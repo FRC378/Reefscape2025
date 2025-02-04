@@ -3,10 +3,11 @@
 
 //** CAN IDs **
 #define PIGEON_CAN_ID              10
-
-
-
-
+#define CLIMBER_MOTOR_CAN_ID       52
+#define ALGAEINTAKE_INTAKE_MOTOR_CAN_ID 53
+#define ALGAEINTAKE_SWING_MOTOR_CAN_ID  54
+#define CHUTE_PIN_MOTOR_CAN_ID     55
+#define ALGAE_DISLODGER_MOTOR_CAN_ID 56
 //********** DRIVETRAIN CONSTANTS **********
 
 #define DRIVEBASE_WIDTH    20.5       //inches, Left to Right
