@@ -15,13 +15,13 @@ class Climber : public frc2::SubsystemBase {
  public:
   Climber();
 
- bool GetUpperLimitSwitch(void);
- bool GetLowerLimitSwitch(void);
- void StopMotor(void);
- void SetMotorPower(double power);
+ bool   GetUpperLimitSwitch(void);
+ bool   GetLowerLimitSwitch(void);
+ void   StopMotor(void);
+ void   SetMotorPower(double power);
  double GetMotorPower(void);
 
-  void Periodic() override;
+ void   Periodic() override;
 
  private:
 

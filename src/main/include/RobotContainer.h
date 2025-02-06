@@ -9,6 +9,18 @@
 //Subsystems
 #include "subsystems/Drivetrain.h"
 
+#include "subsystems/AlgaeDislodger.h"
+
+#include "subsystems/AlgaeIntake.h" 
+
+#include "subsystems/Chute.h"
+
+#include "subsystems/Climber.h"
+
+#include <frc/XboxController.h>
+
+
+
 
 class RobotContainer {
  public:
@@ -16,10 +28,16 @@ class RobotContainer {
 
 
   //****************Controllers*******************
-
-
+  frc::XboxController m_driver {0};
+  frc::XboxController m_ctrl   {1};
   //****************Subsystems*******************
-  Drivetrain m_drivetrain;
+  Drivetrain     m_drivetrain;
+  AlgaeDislodger m_algaedislodger;
+  AlgaeIntake    m_algaeintake;
+  Chute          m_chute;
+  Climber        m_climber;
+
+
 
 
 

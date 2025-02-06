@@ -5,8 +5,16 @@
 #include "RobotContainer.h"
 
 #include <frc2/command/Commands.h>
+#include "commands/CmdClimberDefault.h"
+RobotContainer::RobotContainer() 
+{
+  m_climber.SetDefaultCommand(CmdClimberDefault() );
 
-RobotContainer::RobotContainer() {
+
+
+
+
+
   ConfigureBindings();
 }
 
