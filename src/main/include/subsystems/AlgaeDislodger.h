@@ -17,7 +17,11 @@ class AlgaeDislodger : public frc2::SubsystemBase {
   void   StopMotor(void);
   void   SetAlgaeDislodgerMotorPower(double power);
   bool   GetLowerLimitSwitch(void);
-  
+  bool   GetUpperLimitSwitch(void);
+  double GetAlgaeDislodgerMotorPower(void);
+
+
+
 
 
 

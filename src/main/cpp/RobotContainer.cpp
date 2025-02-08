@@ -9,8 +9,8 @@
 #include "commands/CmdPrintText.h"
 #include "commands/CmdElevatorSetPosition.h"
 #include "commands/CmdElevatorDefault.h"
-
-
+#include "commands/CmdAlgaeDislodgerDeploy.h"
+#include "commands/CmdAlgaeDislodgerRetract.h"
 RobotContainer::RobotContainer() 
 {
 
@@ -36,8 +36,8 @@ void RobotContainer::ConfigureBindings()
   //Controller Buttons
   m_ctrl_AButton.OnTrue( new CmdPrintText("A Button"));
   m_ctrl_BButton.OnTrue( new CmdPrintText("B Button"));
-  m_ctrl_XButton.OnTrue( new CmdPrintText("X Button"));
-  m_ctrl_YButton.OnTrue( new CmdPrintText("Y Button"));
+  m_ctrl_XButton.OnTrue( new CmdAlgaeDislodgerDeploy());
+  m_ctrl_YButton.OnTrue( new CmdAlgaeDislodgerRetract());
 
 
   //Controller DPad
