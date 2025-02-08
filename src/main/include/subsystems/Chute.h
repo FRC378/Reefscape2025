@@ -15,7 +15,7 @@ class Chute : public frc2::SubsystemBase {
 
   void Periodic() override;
 
-  bool   GetLimitSwitch(void);
+  //bool   GetLimitSwitch(void);
   void   StopMotor(void);
   void   SetPinMotorPower(double power);
   double GetPinMotorEncoder(void);
