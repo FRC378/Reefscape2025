@@ -11,6 +11,7 @@
 #include "commands/CmdElevatorDefault.h"
 #include "commands/CmdAlgaeDislodgerDeploy.h"
 #include "commands/CmdAlgaeDislodgerRetract.h"
+#include "commands/CmdAlgaeIntakeEject.h"
 RobotContainer::RobotContainer() 
 {
 
@@ -38,7 +39,7 @@ void RobotContainer::ConfigureBindings()
   m_ctrl_BButton.OnTrue( new CmdPrintText("B Button"));
   m_ctrl_XButton.OnTrue( new CmdAlgaeDislodgerDeploy());
   m_ctrl_YButton.OnTrue( new CmdAlgaeDislodgerRetract());
-
+  m_ctrl_RightBumper.OnTrue( new CmdAlgaeIntakeEject());
 
   //Controller DPad
   m_ctrl_POVup.OnTrue(    new CmdElevatorSetPosition(10.0));

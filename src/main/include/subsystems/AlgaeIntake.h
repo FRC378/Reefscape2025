@@ -18,7 +18,7 @@ class AlgaeIntake : public frc2::SubsystemBase {
   void   SetSwingMotorPower(double power);
   void   SetIntakeMotorPower(double power);
   double GetSwingMotorEncoder(void);
-
+  bool   GetAlgaeDetect(void);
   void Periodic() override;
 
  private:
