@@ -2,16 +2,21 @@
 #pragma once
 
 //** CAN IDs **
-#define PIGEON_CAN_ID              10
-#define CLIMBER_MOTOR_CAN_ID       52
-#define ALGAEINTAKE_INTAKE_MOTOR_CAN_ID 53
-#define ALGAEINTAKE_SWING_MOTOR_CAN_ID  54
-#define CHUTE_PIN_MOTOR_CAN_ID     55
-#define ALGAE_DISLODGER_MOTOR_CAN_ID 56
+#define PIGEON_CAN_ID                    10
+#define CLIMBER_MOTOR_CAN_ID             52
+#define ALGAEINTAKE_INTAKE_MOTOR_CAN_ID  53
+#define ALGAEINTAKE_SWING_MOTOR_CAN_ID   54
+#define CHUTE_PIN_MOTOR_CAN_ID           55
+#define ALGAE_DISLODGER_MOTOR_CAN_ID     56
+#define ELEVATOR_MOTOR_CAN_ID            57
+
+
+
+
 //********** DRIVETRAIN CONSTANTS **********
 
-#define DRIVEBASE_WIDTH    20.5       //inches, Left to Right
-#define DRIVEBASE_HEIGHT   28.5       //inches, Front to Rear
+#define DRIVEBASE_WIDTH    27.0       //inches, Left to Right
+#define DRIVEBASE_HEIGHT   27.0       //inches, Front to Rear
 
 //-------------------------------------------
 #define FRONTLEFT_DRIVE_CAN_ID      11 

@@ -19,9 +19,12 @@ Robot::Robot()
 {
   //*************************** INIT ******************************
   cout<<"RobotInit"<<endl;
-  cout<<"FRC2025: Reefscape"<<endl;
+  cout<<"FRC2025: ~~~ Blinky ~~~"<<endl;
   cout<<"Version: " << __DATE__ <<"  "<<__TIME__<<endl<<endl; 
 
+  //Robot Initialization
+  g_robotContainer.m_elevator.Stop();
+  g_robotContainer.m_elevator.ZeroEncoder();
 
 }
 
@@ -29,7 +32,7 @@ void Robot::RobotPeriodic()
 {
   frc2::CommandScheduler::GetInstance().Run();
 
-
+  WriteToSmartDashboard();
 }
 
 void Robot::DisabledInit() 
