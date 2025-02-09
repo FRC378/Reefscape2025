@@ -17,7 +17,7 @@ RobotContainer::RobotContainer()
 
   //******************** Subsystem Defaults ******************************
   m_elevator.SetDefaultCommand( CmdElevatorDefault() );
-  m_climber.SetDefaultCommand(CmdClimberDefault() );
+  m_climber.SetDefaultCommand( CmdClimberDefault() );
 
 
   //******************** Dashboard Buttons *******************************
@@ -35,20 +35,26 @@ void RobotContainer::ConfigureBindings()
 {
 
   //Controller Buttons
-  m_ctrl_AButton.OnTrue( new CmdPrintText("A Button"));
-  m_ctrl_BButton.OnTrue( new CmdPrintText("B Button"));
-  m_ctrl_XButton.OnTrue( new CmdAlgaeDislodgerDeploy());
-  m_ctrl_YButton.OnTrue( new CmdAlgaeDislodgerRetract());
-  m_ctrl_RightBumper.OnTrue( new CmdAlgaeIntakeEject());
+  m_ctrl.A().OnTrue( new CmdPrintText("A Button"));
+  m_ctrl.B().OnTrue( new CmdPrintText("B Button"));
+  m_ctrl.X().OnTrue( new CmdAlgaeDislodgerDeploy());
+  m_ctrl.Y().OnTrue( new CmdAlgaeDislodgerRetract());
+
+  m_ctrl.RightBumper().OnTrue( new CmdAlgaeIntakeEject());
+
+  //m_ctrl.LeftTrigger().WhileTrue( score_coral );
+  //m_ctrl.RightTrigger().WhileTrue( score_algae );
+
 
   //Controller DPad
-  m_ctrl_POVup.OnTrue(    new CmdElevatorSetPosition(10.0));
-  m_ctrl_POVdown.OnTrue(  new CmdElevatorSetPosition(0.0));
-  m_ctrl_POVleft.OnTrue(  new CmdElevatorSetPosition(7.5));
-  m_ctrl_POVright.OnTrue( new CmdElevatorSetPosition(5.0));
+  m_ctrl.POVUp().OnTrue(    new CmdElevatorSetPosition(10.0));
+  m_ctrl.POVDown().OnTrue(  new CmdElevatorSetPosition(0.0));
+  m_ctrl.POVLeft().OnTrue(  new CmdElevatorSetPosition(7.5));
+  m_ctrl.POVRight().OnTrue( new CmdElevatorSetPosition(5.0));
 
 
   //Driver Buttons
+
 
 
 }
