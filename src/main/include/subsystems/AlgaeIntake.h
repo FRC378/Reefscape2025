@@ -6,7 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
-#include "RobotConstants.h"
+#include "Constants.h"
 
 class AlgaeIntake : public frc2::SubsystemBase {
  public:

@@ -8,7 +8,7 @@
 #include <rev/SparkMax.h>
 #include <rev/SparkRelativeEncoder.h>
 #include <rev/SparkClosedLoopController.h>
-#include "RobotConstants.h"
+#include "Constants.h"
 
 class Elevator : public frc2::SubsystemBase {
  public:
