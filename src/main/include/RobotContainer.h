@@ -7,6 +7,7 @@
 #include <frc2/command/CommandPtr.h>
 
 #include <frc2/command/button/CommandXboxController.h>
+#include <frc/smartdashboard/SendableChooser.h>
 
 //Subsystems
 #include "subsystems/Drivetrain.h"
@@ -38,12 +39,12 @@ class RobotContainer {
 
 
 
-  frc2::CommandPtr GetAutonomousCommand();
+  frc2::Command* GetAutonomousCommand();
 
  private:
 
 
-
+  frc::SendableChooser<frc2::Command*> m_chooser;
   void ConfigureBindings();
 
 };

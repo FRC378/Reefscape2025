@@ -5,13 +5,21 @@
 #include "RobotContainer.h"
 
 #include <frc2/command/Commands.h>
-#include "commands/CmdClimberDefault.h"
+#include <frc/smartdashboard/SmartDashboard.h>
+
 #include "commands/CmdPrintText.h"
+#include "commands/CmdClimberDefault.h"
 #include "commands/CmdElevatorSetPosition.h"
 #include "commands/CmdElevatorDefault.h"
 #include "commands/CmdAlgaeDislodgerDeploy.h"
 #include "commands/CmdAlgaeDislodgerRetract.h"
 #include "commands/CmdAlgaeIntakeEject.h"
+
+
+//Autos
+#include "commands/AutoDoNothing.h"
+
+
 RobotContainer::RobotContainer() 
 {
 
@@ -24,9 +32,12 @@ RobotContainer::RobotContainer()
 
 
   //**********************  AUTOs ****************************************
+  m_chooser.SetDefaultOption("Auto Do Nothing",    new AutoDoNothing() );
 
 
 
+
+  frc::SmartDashboard::PutData("Auto Mode", &m_chooser);
 
   ConfigureBindings();
 }
@@ -59,7 +70,7 @@ void RobotContainer::ConfigureBindings()
 
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() 
+frc2::Command* RobotContainer::GetAutonomousCommand() 
 {
-  return frc2::cmd::Print("No autonomous command configured");
+  return m_chooser.GetSelected();
 }
