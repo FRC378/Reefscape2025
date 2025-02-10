@@ -14,7 +14,7 @@
 #include "commands/CmdAlgaeDislodgerDeploy.h"
 #include "commands/CmdAlgaeDislodgerRetract.h"
 #include "commands/CmdAlgaeIntakeEject.h"
-
+#include "commands/CmdChuteDefault.h"
 
 //Autos
 #include "commands/AutoDoNothing.h"
@@ -26,7 +26,7 @@ RobotContainer::RobotContainer()
   //******************** Subsystem Defaults ******************************
   m_elevator.SetDefaultCommand( CmdElevatorDefault() );
   m_climber.SetDefaultCommand( CmdClimberDefault() );
-
+  m_chute.SetDefaultCommand( CmdChuteDefault() );
 
   //******************** Dashboard Buttons *******************************
 
