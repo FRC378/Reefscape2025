@@ -6,6 +6,7 @@
 
 #include <frc2/command/CommandScheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <rev/config/SparkMaxConfig.h>
 
 //Global Objects
 RobotContainer g_robotContainer;  
@@ -25,6 +26,7 @@ Robot::Robot()
   //Robot Initialization
   g_robotContainer.m_elevator.Stop();
   g_robotContainer.m_elevator.ZeroEncoder();
+
 
 }
 

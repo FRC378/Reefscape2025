@@ -29,12 +29,9 @@ class Elevator : public frc2::SubsystemBase {
 
  private:
 
- rev::spark::SparkMax m_motor{ELEVATOR_MOTOR_CAN_ID, rev::spark::SparkMax::MotorType::kBrushless};
- rev::spark::SparkRelativeEncoder m_motorEncoder = m_motor.GetEncoder();
- rev::spark::SparkClosedLoopController m_motorPID = m_motor.GetClosedLoopController();
+ rev::spark::SparkMax m_elevator{ELEVATOR_MOTOR_CAN_ID, rev::spark::SparkMax::MotorType::kBrushless};
+ rev::spark::SparkRelativeEncoder m_motorEncoder = m_elevator.GetEncoder();
+ rev::spark::SparkClosedLoopController m_motorPID = m_elevator.GetClosedLoopController();
 
 
-
-
-  
 };

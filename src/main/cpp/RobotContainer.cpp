@@ -1,6 +1,7 @@
+//
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+// the WPILib BSD license file in the root directory of this project
 
 #include "RobotContainer.h"
 
@@ -44,7 +45,6 @@ RobotContainer::RobotContainer()
 
 void RobotContainer::ConfigureBindings() 
 {
-
   //Controller Buttons
   m_ctrl.A().OnTrue( new CmdPrintText("A Button"));
   m_ctrl.B().OnTrue( new CmdPrintText("B Button"));

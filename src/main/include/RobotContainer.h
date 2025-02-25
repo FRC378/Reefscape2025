@@ -10,12 +10,12 @@
 #include <frc/smartdashboard/SendableChooser.h>
 
 //Subsystems
-#include "subsystems/Drivetrain.h"
+#include "subsystems/Drivetrain.h"     
 #include "subsystems/AlgaeDislodger.h"
-#include "subsystems/AlgaeIntake.h" 
-#include "subsystems/Chute.h"
-#include "subsystems/Climber.h"
-#include "subsystems/Elevator.h"
+#include "subsystems/AlgaeIntake.h"   
+#include "subsystems/Chute.h"         
+#include "subsystems/Climber.h"     
+#include "subsystems/Elevator.h"  
 
 
 
@@ -29,12 +29,12 @@ class RobotContainer {
   frc2::CommandXboxController m_ctrl   {1};
 
   //****************Subsystems*******************
-  Drivetrain     m_drivetrain;
+  Drivetrain     m_drivetrain;     
   AlgaeDislodger m_algaedislodger;
-  AlgaeIntake    m_algaeintake;
-  Chute          m_chute;
-  Climber        m_climber;
-  Elevator       m_elevator;
+  AlgaeIntake    m_algaeintake;    
+  Chute          m_chute;         
+  Climber        m_climber;     
+  Elevator       m_elevator;     
 
 
 

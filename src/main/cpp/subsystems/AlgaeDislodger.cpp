@@ -4,6 +4,7 @@
 
 #include "subsystems/AlgaeDislodger.h"
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <rev/config/SparkMaxConfig.h>
 
 AlgaeDislodger::AlgaeDislodger() = default;
 
@@ -16,32 +17,28 @@ void AlgaeDislodger::Periodic()
 
 void AlgaeDislodger::StopMotor(void)
 {
- m_algaeDislodgerMotor.Set(0.0);
+ m_algaedislodger.Set(0.0);
 }
 
 double AlgaeDislodger::GetAlgaeDislodgerMotorPower(void)
  {
- return m_algaeDislodgerMotor.Get();
+ return m_algaedislodger.Get();
  }
 void AlgaeDislodger::SetAlgaeDislodgerMotorPower(double power)
 {
- m_algaeDislodgerMotor.Set(power);
+ m_algaedislodger.Set(power);
 }
 
 bool AlgaeDislodger::GetLowerLimitSwitch(void)
 {
- return m_algaeDislodgerMotor.GetReverseLimitSwitch().Get();
+ return m_algaedislodger.GetReverseLimitSwitch().Get();
     //return false; 
 }
 
 bool AlgaeDislodger::GetUpperLimitSwitch(void)
 {
-return m_algaeDislodgerMotor.GetForwardLimitSwitch().Get();
+return m_algaedislodger.GetForwardLimitSwitch().Get();
     //return false; 
 }
-
-
-
-
 
 

@@ -19,11 +19,11 @@ class AlgaeIntake : public frc2::SubsystemBase {
   void   SetIntakeMotorPower(double power);
   double GetSwingMotorEncoder(void);
   bool   GetAlgaeDetect(void);
-  void Periodic() override;
+  void   Periodic() override;
 
  private:
 
-  rev::spark::SparkMax m_intakeMotor{ALGAEINTAKE_INTAKE_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushless};
+  //rev::spark::SparkMax m_intakeMotor{ALGAEINTAKE_INTAKE_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushless};
   rev::spark::SparkMax m_swingMotor{ALGAEINTAKE_SWING_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushless};
   rev::spark::SparkRelativeEncoder m_swingMotorEncoder = m_swingMotor.GetEncoder();
 };

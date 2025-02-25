@@ -6,7 +6,7 @@
 #include "robot.h"
 CmdChuteDefault::CmdChuteDefault() 
 {
-  
+  AddRequirements(&g_robotContainer.m_chute);
 }
 
 // Called when the command is initially scheduled.

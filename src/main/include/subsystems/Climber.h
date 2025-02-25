@@ -25,5 +25,6 @@ class Climber : public frc2::SubsystemBase {
 
  private:
 
-  rev::spark::SparkMax m_motor{CLIMBER_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushless};
+  rev::spark::SparkMax m_climber{CLIMBER_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushless};
+
 };

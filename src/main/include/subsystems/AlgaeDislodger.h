@@ -27,7 +27,9 @@ class AlgaeDislodger : public frc2::SubsystemBase {
 
  private:
  
-  rev::spark::SparkMax m_algaeDislodgerMotor{ALGAE_DISLODGER_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushless};
+  /// initialize Algae Dislodger motor 
+  rev::spark::SparkMax m_algaedislodger{ALGAE_DISLODGER_MOTOR_CAN_ID, rev::spark::SparkMax::MotorType::kBrushless};
+
 
 
 };

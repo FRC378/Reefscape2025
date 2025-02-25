@@ -17,7 +17,7 @@ Climber::Climber()
         .Inverted(false)
         .OpenLoopRampRate(0.3);
 
-    m_motor.Configure( motorConfig,
+    m_climber.Configure( motorConfig,
                 rev::spark::SparkMax::ResetMode::kResetSafeParameters,
                 rev::spark::SparkMax::PersistMode::kPersistParameters);
 }
@@ -30,24 +30,24 @@ void Climber::Periodic()
 
  bool Climber::GetUpperLimitSwitch(void)
  {
-    return m_motor.GetForwardLimitSwitch().Get();
+    return m_climber.GetForwardLimitSwitch().Get();
     //return false;
  }
  bool Climber::GetLowerLimitSwitch(void)
  {
-    return m_motor.GetReverseLimitSwitch().Get();
+    return m_climber.GetReverseLimitSwitch().Get();
     //return false; 
  }
  void Climber::StopMotor(void)
  {
-    m_motor.Set(0.0);
+    m_climber.Set(0.0);
  }
  void Climber::SetMotorPower(double power)
  {
-    m_motor.Set(power);
+    m_climber.Set(power);
  }
  double Climber::GetMotorPower(void)
  {
-    return m_motor.Get();
+    return m_climber.Get();
  }
 

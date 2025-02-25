@@ -38,12 +38,12 @@ Elevator::Elevator()
         .AllowedClosedLoopError( 0.1 );
 
 
-  m_motor.Configure( motorConfig,
+  m_elevator.Configure( motorConfig,
                     rev::spark::SparkMax::ResetMode::kResetSafeParameters,
                     rev::spark::SparkMax::PersistMode::kPersistParameters);
 
 
-
+  
 
 }
 
@@ -63,16 +63,16 @@ void Elevator::Periodic()
 
   void Elevator::Stop(void)
   {
-    m_motor.Set(0.0);
+    m_elevator.Set(0.0);
   }
   
   bool Elevator::GetLowerLimitSwitch(void)
   {
-    return m_motor.GetReverseLimitSwitch().Get();
+    return m_elevator.GetReverseLimitSwitch().Get();
   }
   bool Elevator::GetUpperLimitSwitch(void)
   {
-    return m_motor.GetForwardLimitSwitch().Get();
+    return m_elevator.GetForwardLimitSwitch().Get();
   }
 
   double Elevator::GetPosition(void)
@@ -91,7 +91,7 @@ void Elevator::Periodic()
   void Elevator::SetPower(double power)
   {
     //std::cout<<"SetPower"<<std::endl;
-    m_motor.Set(power);
+    m_elevator.Set(power);
   }
 
  void   Elevator::ZeroEncoder(void)
