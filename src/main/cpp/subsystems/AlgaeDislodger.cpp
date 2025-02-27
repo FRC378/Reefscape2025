@@ -5,6 +5,7 @@
 #include "subsystems/AlgaeDislodger.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <rev/config/SparkMaxConfig.h>
+#include <iostream>
 
 AlgaeDislodger::AlgaeDislodger() = default;
 
@@ -13,6 +14,8 @@ void AlgaeDislodger::Periodic()
 {
   frc::SmartDashboard::PutBoolean("ElevatorUpperSw",  GetUpperLimitSwitch() );
   frc::SmartDashboard::PutBoolean("ElevatorLowerSw",  GetLowerLimitSwitch() );
+  frc::SmartDashboard::PutNumber("Ew",  fmod(m_algaedislodgerEncoder.GetPosition(), 1)*360);
+  //NOTE: SPARKMAX CONFIG CONVERSION FACTOR IS 0.01
 }
 
 void AlgaeDislodger::StopMotor(void)
@@ -27,6 +30,8 @@ double AlgaeDislodger::GetAlgaeDislodgerMotorPower(void)
 void AlgaeDislodger::SetAlgaeDislodgerMotorPower(double power)
 {
  m_algaedislodger.Set(power);
+
+  
 }
 
 bool AlgaeDislodger::GetLowerLimitSwitch(void)

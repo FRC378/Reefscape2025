@@ -12,7 +12,8 @@ CmdAlgaeDislodgerDeploy::CmdAlgaeDislodgerDeploy()
 // Called when the command is initially scheduled.
 void CmdAlgaeDislodgerDeploy::Initialize() 
 {
-  g_robotContainer.m_algaedislodger.SetAlgaeDislodgerMotorPower(0.3);
+  g_robotContainer.m_algaedislodger.SetAlgaeDislodgerMotorPower(0.1);
+
 }
 
 // Called repeatedly when this Command is scheduled to run

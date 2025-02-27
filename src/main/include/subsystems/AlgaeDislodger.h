@@ -7,8 +7,10 @@
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
 #include "Constants.h"
+#include <rev/config/SparkMaxConfig.h> 
 
-class AlgaeDislodger : public frc2::SubsystemBase {
+class AlgaeDislodger : public frc2::SubsystemBase 
+{
  public:
   AlgaeDislodger();
 
@@ -29,7 +31,6 @@ class AlgaeDislodger : public frc2::SubsystemBase {
  
   /// initialize Algae Dislodger motor 
   rev::spark::SparkMax m_algaedislodger{ALGAE_DISLODGER_MOTOR_CAN_ID, rev::spark::SparkMax::MotorType::kBrushless};
-
-
+  rev::spark::SparkRelativeEncoder m_algaedislodgerEncoder = m_algaedislodger.GetEncoder(); 
 
 };
