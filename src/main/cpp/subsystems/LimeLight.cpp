@@ -1,0 +1,86 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+#include "subsystems/LimeLight.h"
+#include <networktables/NetworkTable.h>
+#include <networktables/NetworkTableInstance.h>
+#include "frc/smartdashboard/SmartDashboard.h"
+
+#define PI 3.1415
+
+
+LimeLight::LimeLight(std::string llname) 
+{
+    m_LLName = llname;
+
+  frc::SmartDashboard::PutNumber("LL_h1",  0.0 );
+  frc::SmartDashboard::PutNumber("LL_h2",  0.0 );
+  frc::SmartDashboard::PutNumber("LL_a1",  0.0 );
+}
+
+// This method will be called once per scheduler run
+void LimeLight::Periodic() 
+{
+    RunLimeLight();
+}
+
+
+
+
+int    LimeLight::GetTargetId(void)
+{
+     return nt::NetworkTableInstance::GetDefault().GetTable(m_LLName)->GetNumber("tid", 0);   
+}
+bool   LimeLight::IsTargetValid(void)
+{
+    return nt::NetworkTableInstance::GetDefault().GetTable(m_LLName)->GetNumber("tv", 0);   
+}
+
+double LimeLight::GetTargetHAngle(void)
+{
+    return nt::NetworkTableInstance::GetDefault().GetTable(m_LLName)->GetNumber("tx", 0);
+}
+
+double LimeLight::GetTargetVAngle(void)
+{
+    return nt::NetworkTableInstance::GetDefault().GetTable(m_LLName)->GetNumber("ty", 0);   
+}
+double LimeLight::GetTargetDistance(void)
+{
+
+  double h1 = frc::SmartDashboard::GetNumber("LL_h1",  0.0 );
+  double h2 = frc::SmartDashboard::GetNumber("LL_h2",  0.0 );
+  double a1 = frc::SmartDashboard::GetNumber("LL_a1",  0.0 );
+
+  // const double a1 = 32;//angle of limelight 32 off of vertical
+  // const double h1 = 35.5;//height of limelight from ground
+  // const double h2 = 103.50;//height of target
+
+  if (!IsTargetValid()) return 0.0;
+
+
+  double a2 = nt::NetworkTableInstance::GetDefault().GetTable(m_LLName)->GetNumber("ty", 0);
+  
+  return (h2-h1)/tan((a1+a2)*(PI/180));
+
+}
+void   LimeLight::SetPipeline(int value)
+{
+    nt::NetworkTableInstance::GetDefault().GetTable(m_LLName)->PutNumber("pipeline", value);
+}
+int   LimeLight::GetPipeline(void)
+{
+   return nt::NetworkTableInstance::GetDefault().GetTable(m_LLName)->GetNumber("getpipe", 0); 
+}
+
+
+void    LimeLight::RunLimeLight(void)
+{
+        //Status Update
+    frc::SmartDashboard::PutBoolean(m_LLName + " Valid",  IsTargetValid() );
+    frc::SmartDashboard::PutNumber(m_LLName + " TID",     GetTargetId() );
+    frc::SmartDashboard::PutNumber(m_LLName + " HAngle",  GetTargetHAngle()  );
+    frc::SmartDashboard::PutNumber(m_LLName + " YAngle",  GetTargetVAngle()  );
+    frc::SmartDashboard::PutNumber(m_LLName + " Range",   GetTargetDistance()  );
+}

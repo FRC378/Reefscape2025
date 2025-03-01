@@ -15,7 +15,8 @@
 #include "subsystems/AlgaeIntake.h"   
 #include "subsystems/Chute.h"         
 #include "subsystems/Climber.h"     
-#include "subsystems/Elevator.h"  
+#include "subsystems/Elevator.h"
+#include "subsystems/LimeLight.h"  
 
 
 
@@ -34,7 +35,10 @@ class RobotContainer {
   AlgaeIntake    m_algaeintake;    
   Chute          m_chute;         
   Climber        m_climber;     
-  Elevator       m_elevator;     
+  Elevator       m_elevator;
+
+  LimeLight      m_limelight3{"limelight-vthree"};
+  LimeLight      m_limelight2{"limelight-vtwo"};     
 
 
 
