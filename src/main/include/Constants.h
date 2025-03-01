@@ -16,7 +16,6 @@
 
 
 
-
 //********** DRIVETRAIN CONSTANTS **********
 
 #define DRIVEBASE_WIDTH    27.0       //inches, Left to Right

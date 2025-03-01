@@ -5,8 +5,14 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
+#include <frc/controller/PIDController.h>
 
-class LimeLight : public frc2::SubsystemBase {
+#define  BranchTrackKp 0.05
+#define  BranchTrackKi 0 
+#define  BranchTrackKd 0
+
+class LimeLight : public frc2::SubsystemBase 
+{
  public:
   LimeLight(std::string llname);
 
@@ -23,8 +29,9 @@ class LimeLight : public frc2::SubsystemBase {
   void   SetLastSeenID(void);
   double GetTargetYaw(void);
 
+  double TrackBranch(void);
 
-  void    RunLimeLight(void);
+  void   RunLimeLight(void);
 
   void Periodic() override;
 
@@ -34,5 +41,6 @@ class LimeLight : public frc2::SubsystemBase {
   bool   m_targetValid;
   double m_targetYaw;
   double m_targetDistance;
-   std::string m_LLName;
+  std::string m_LLName;
+  frc::PIDController m_positionBranchPID {BranchTrackKp, BranchTrackKi, BranchTrackKd};
 };

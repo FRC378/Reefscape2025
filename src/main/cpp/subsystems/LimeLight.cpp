@@ -76,10 +76,21 @@ int   LimeLight::GetPipeline(void)
 
 void    LimeLight::SetLastSeenID(void) 
 {
-    if (IsTargetValid()){
+    if (IsTargetValid() && (1 <= GetTargetId()) && (GetTargetId() <= 22))
+    {
         m_lastSeenID = GetTargetId();
     }
     
+}
+
+double LimeLight::TrackBranch()
+{
+    if (IsTargetValid())
+    {
+        double pidoutput = m_positionBranchPID.Calculate(GetTargetHAngle(), 0);
+        return  std::clamp(pidoutput, -1.0, 1.0);
+        //GetTargetHAngle();
+    }
 }
 
 //Function to return the optimal angle for the drivebase to be square to the reef
@@ -111,7 +122,7 @@ double  LimeLight::GetTargetYaw(void)
             return 300.0;
             break;
         default:
-            return 0.0;
+            return -1.0;
     }
 }
 
@@ -120,11 +131,12 @@ void    LimeLight::RunLimeLight(void)
 {
     SetLastSeenID();
         //Status Update
-    frc::SmartDashboard::PutBoolean(m_LLName + " Valid",  IsTargetValid() );
-    frc::SmartDashboard::PutNumber(m_LLName + " TID",     GetTargetId() );
-    frc::SmartDashboard::PutNumber(m_LLName + " HAngle",  GetTargetHAngle()  );
-    frc::SmartDashboard::PutNumber(m_LLName + " YAngle",  GetTargetVAngle()  );
-    frc::SmartDashboard::PutNumber(m_LLName + " Range",   GetTargetDistance()  );
-    frc::SmartDashboard::PutNumber(m_LLName + " Last ID",   m_lastSeenID  );
-    frc::SmartDashboard::PutNumber(m_LLName + " Target Yaw",   GetTargetYaw()  );
+    frc::SmartDashboard::PutBoolean(m_LLName + " Valid",        IsTargetValid() );
+    frc::SmartDashboard::PutNumber (m_LLName + " TID",          GetTargetId() );
+    frc::SmartDashboard::PutNumber (m_LLName + " HAngle",       GetTargetHAngle()  );
+    frc::SmartDashboard::PutNumber (m_LLName + " YAngle",       GetTargetVAngle()  );
+    frc::SmartDashboard::PutNumber (m_LLName + " Range",        GetTargetDistance()  );
+    frc::SmartDashboard::PutNumber (m_LLName + " Last ID",      m_lastSeenID  );
+    frc::SmartDashboard::PutNumber (m_LLName + " Target Yaw",   GetTargetYaw()  );
+    frc::SmartDashboard::PutNumber (m_LLName + " Track PID Out",TrackBranch()  );
 }
