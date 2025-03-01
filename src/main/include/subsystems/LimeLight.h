@@ -20,12 +20,16 @@ class LimeLight : public frc2::SubsystemBase {
   void   SetPipeline(int value);
   int    GetPipeline(void);
 
+  void   SetLastSeenID(void);
+  double GetTargetYaw(void);
+
 
   void    RunLimeLight(void);
 
   void Periodic() override;
 
  private:
+  int    m_lastSeenID;
   int    m_targetId;  
   bool   m_targetValid;
   double m_targetYaw;

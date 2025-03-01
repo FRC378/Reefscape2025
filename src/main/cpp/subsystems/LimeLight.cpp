@@ -74,13 +74,57 @@ int   LimeLight::GetPipeline(void)
    return nt::NetworkTableInstance::GetDefault().GetTable(m_LLName)->GetNumber("getpipe", 0); 
 }
 
+void    LimeLight::SetLastSeenID(void) 
+{
+    if (IsTargetValid()){
+        m_lastSeenID = GetTargetId();
+    }
+    
+}
+
+//Function to return the optimal angle for the drivebase to be square to the reef
+double  LimeLight::GetTargetYaw(void)
+{
+    switch(m_lastSeenID) {
+        case 18:
+        case  7:
+            return 0.0;
+            break;
+        case 17:
+        case  8:
+            return 60.0;
+            break;
+        case 22:
+        case  9:
+            return 120.0;
+            break;
+        case 21:
+        case 10:
+            return 180.0;
+            break;
+        case 20:
+        case 11:
+            return 240.0;
+            break;
+        case 19:
+        case  6:
+            return 300.0;
+            break;
+        default:
+            return 0.0;
+    }
+}
+
 
 void    LimeLight::RunLimeLight(void)
 {
+    SetLastSeenID();
         //Status Update
     frc::SmartDashboard::PutBoolean(m_LLName + " Valid",  IsTargetValid() );
     frc::SmartDashboard::PutNumber(m_LLName + " TID",     GetTargetId() );
     frc::SmartDashboard::PutNumber(m_LLName + " HAngle",  GetTargetHAngle()  );
     frc::SmartDashboard::PutNumber(m_LLName + " YAngle",  GetTargetVAngle()  );
     frc::SmartDashboard::PutNumber(m_LLName + " Range",   GetTargetDistance()  );
+    frc::SmartDashboard::PutNumber(m_LLName + " Last ID",   m_lastSeenID  );
+    frc::SmartDashboard::PutNumber(m_LLName + " Target Yaw",   GetTargetYaw()  );
 }
