@@ -30,12 +30,12 @@ void CmdElevatorDefault::Execute()
 
   if(  (axis > DEADBAND) && !g_robotContainer.m_elevator.GetUpperLimitSwitch() )
   {
-    g_robotContainer.m_elevator.SetPower( (axis-DEADBAND) * 0.15  );
+    g_robotContainer.m_elevator.SetPower( (axis-DEADBAND) * 0.5  );
     m_manualElevatorEnable = true;
   }
   else if ( (axis < -DEADBAND) && !g_robotContainer.m_elevator.GetLowerLimitSwitch() )
   {
-    g_robotContainer.m_elevator.SetPower( (axis+DEADBAND) * 0.15  );
+    g_robotContainer.m_elevator.SetPower( (axis+DEADBAND) * 0.5  );
     m_manualElevatorEnable = true;
   }
   else if(m_manualElevatorEnable)

@@ -12,8 +12,7 @@ AlgaeDislodger::AlgaeDislodger() = default;
 // This method will be called once per scheduler run
 void AlgaeDislodger::Periodic() 
 {
-  frc::SmartDashboard::PutBoolean("ElevatorUpperSw",  GetUpperLimitSwitch() );
-  frc::SmartDashboard::PutBoolean("ElevatorLowerSw",  GetLowerLimitSwitch() );
+
   frc::SmartDashboard::PutNumber("Ew",  fmod(m_algaedislodgerEncoder.GetPosition(), 1)*360);
   //NOTE: SPARKMAX CONFIG CONVERSION FACTOR IS 0.01
 }

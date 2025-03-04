@@ -45,23 +45,23 @@ RobotContainer::RobotContainer()
 
 void RobotContainer::ConfigureBindings() 
 {
-  //Controller Buttons
-  m_ctrl.A().OnTrue( new CmdPrintText("A Button"));
-  m_ctrl.B().OnTrue( new CmdPrintText("B Button"));
-  m_ctrl.X().OnTrue( new CmdAlgaeDislodgerDeploy());
-  m_ctrl.Y().OnTrue( new CmdAlgaeDislodgerRetract());
+  // //Controller Buttons
+  // m_ctrl.A().OnTrue( new CmdPrintText("A Button"));
+  // m_ctrl.B().OnTrue( new CmdPrintText("B Button"));
+  // m_ctrl.X().OnTrue( new CmdAlgaeDislodgerDeploy());
+  // m_ctrl.Y().OnTrue( new CmdAlgaeDislodgerRetract());
 
-  m_ctrl.RightBumper().OnTrue( new CmdAlgaeIntakeEject());
+  // m_ctrl.RightBumper().OnTrue( new CmdAlgaeIntakeEject());
 
-  //m_ctrl.LeftTrigger().WhileTrue( score_coral );
-  //m_ctrl.RightTrigger().WhileTrue( score_algae );
+  // //m_ctrl.LeftTrigger().WhileTrue( score_coral );
+  // //m_ctrl.RightTrigger().WhileTrue( score_algae );
 
 
-  //Controller DPad
-  m_ctrl.POVUp().OnTrue(    new CmdElevatorSetPosition(10.0));
-  m_ctrl.POVDown().OnTrue(  new CmdElevatorSetPosition(0.0));
-  m_ctrl.POVLeft().OnTrue(  new CmdElevatorSetPosition(7.5));
-  m_ctrl.POVRight().OnTrue( new CmdElevatorSetPosition(5.0));
+  // //Controller DPad
+  // m_ctrl.POVUp().OnTrue(    new CmdElevatorSetPosition(10.0));
+  // m_ctrl.POVDown().OnTrue(  new CmdElevatorSetPosition(0.0));
+  // m_ctrl.POVLeft().OnTrue(  new CmdElevatorSetPosition(7.5));
+  // m_ctrl.POVRight().OnTrue( new CmdElevatorSetPosition(5.0));
 
 
   //Driver Buttons

@@ -10,17 +10,15 @@
 
 Elevator::Elevator()
 {
-  std::cout <<"Elevator"<<std::endl;
-
 
   //SparkMaxConfigurator
   rev::spark::SparkMaxConfig motorConfig;
  
   motorConfig
         .SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kBrake)
-        .SmartCurrentLimit(50)
-        .Inverted(false)
-        .OpenLoopRampRate(0.3);
+        .SmartCurrentLimit(40)
+        .Inverted(true)
+        .OpenLoopRampRate(1.0);
 //      .ClosedLoopRampRate(0.3);
 
   motorConfig.encoder
@@ -41,9 +39,6 @@ Elevator::Elevator()
   m_elevator.Configure( motorConfig,
                     rev::spark::SparkMax::ResetMode::kResetSafeParameters,
                     rev::spark::SparkMax::PersistMode::kPersistParameters);
-
-
-  
 
 }
 
