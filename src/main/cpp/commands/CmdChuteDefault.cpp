@@ -13,6 +13,7 @@ CmdChuteDefault::CmdChuteDefault()
 void CmdChuteDefault::Initialize() 
 {
   m_currstate = 0;
+  m_timer.Reset();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -27,33 +28,36 @@ void CmdChuteDefault::Execute()
     if (g_robotContainer.m_ctrl.GetRightTriggerAxis() > 0.5)
     {
       g_robotContainer.m_chute.SetPinMotorPower(0.1);
+      m_timer.Start();
       m_currstate = 1;
     }
   }
 
-  if(m_currstate ==1)
+  if(m_currstate == 1)
   {
-    if (g_robotContainer.m_chute.GetPinMotorEncoder() > 0.25)
+    if ( m_timer.HasElapsed( 1.0_s ) )
     {
       g_robotContainer.m_chute.StopMotor();
       m_currstate = 2;
     }
   }
 
-  if(m_currstate ==2)
+  if(m_currstate == 2)
   {
     if (g_robotContainer.m_ctrl.GetRightTriggerAxis() < 0.5)
     {
       g_robotContainer.m_chute.SetPinMotorPower(-0.1);
+      m_timer.Restart();
       m_currstate = 3;
     }
   }
 
-  if(m_currstate ==3)
+  if(m_currstate == 3)
   {
-    if (g_robotContainer.m_chute.GetPinMotorEncoder() <= 0)
+    if (g_robotContainer.m_chute.GetLimitSwitch() )   //Add timer check for safety here??
     {
       g_robotContainer.m_chute.StopMotor();
+      m_timer.Stop();
       m_currstate = 0;
     }
   }

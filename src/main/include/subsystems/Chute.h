@@ -6,6 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
+#include <frc/DigitalInput.h>
 #include "Constants.h"
 
 class Chute : public frc2::SubsystemBase {
@@ -15,11 +16,10 @@ class Chute : public frc2::SubsystemBase {
 
   void Periodic() override;
 
-  //bool   GetLimitSwitch(void);
-  void   StopMotor(void);
-  void   SetPinMotorPower(double power);
-  double GetPinMotorEncoder(void);
+  void StopMotor(void);
+  void SetPinMotorPower(double power);
 
+  bool GetLimitSwitch(void);
   bool GetCoralDetectSensor(void);
 
 
@@ -28,7 +28,8 @@ class Chute : public frc2::SubsystemBase {
 
  private:
   
-  rev::spark::SparkMax m_pinMotor{CHUTE_PIN_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushless}; 
-  rev::spark::SparkRelativeEncoder m_pinMotorEncoder = m_pinMotor.GetEncoder();
+  rev::spark::SparkMax m_pinMotor{CHUTE_PIN_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushed}; 
+
+  frc::DigitalInput    m_pinMotorLimitSwitch{0};
 
 };

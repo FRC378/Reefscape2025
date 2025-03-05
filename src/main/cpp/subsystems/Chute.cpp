@@ -4,33 +4,13 @@
 
 #include "subsystems/Chute.h"
 #include  <rev/config/SparkMaxConfig.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include "Robot.h"
 
 Chute::Chute()
 {
     
-  //SparkMaxConfigurator
-  rev::spark::SparkMaxConfig motorConfig;
- 
-  motorConfig
-        .SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kBrake)
-        .SmartCurrentLimit(50)
-        .Inverted(false)
-        .OpenLoopRampRate(0.3);
-//      .ClosedLoopRampRate(0.3);
 
-  motorConfig.encoder
-        .PositionConversionFactor(1.0)        //Stick with Rotations as a position
-        .VelocityConversionFactor(1.0);       //Stick with RPM as a velocity
-
-//   motorConfig.closedLoop
-//         .SetFeedbackSensor(rev::spark::ClosedLoopConfig::FeedbackSensor::kPrimaryEncoder)
-//         .Pid(0.05, 0, 0)
-//         .OutputRange(-.09, 0.1);
-
-
-  m_pinMotor.Configure( motorConfig,
-                    rev::spark::SparkMax::ResetMode::kResetSafeParameters,
-                    rev::spark::SparkMax::PersistMode::kPersistParameters);
 
 }
 
@@ -38,11 +18,31 @@ Chute::Chute()
 void Chute::Periodic() 
 {
 
+  const double uppower   = 0.2;
+  const double downpower = 0.2;
+
+  bool Xbtn = g_robotContainer.m_ctrl.X().Get();
+  bool Ybtn = g_robotContainer.m_ctrl.Y().Get();
+
+
+  if( Xbtn  ) 
+  {
+    SetPinMotorPower(uppower);
+  }
+  else if( Ybtn  )
+  {
+    SetPinMotorPower(downpower);
+  }
+  else
+  {
+    SetPinMotorPower(0.0);
+  }
+
+
+  frc::SmartDashboard::PutBoolean("ChutePinLimitSw",  GetLimitSwitch() );
+
 }
-//bool   Chute::GetLimitSwitch(void)
-//{
- 
-//}
+
 void   Chute::StopMotor(void)
 {
   m_pinMotor.Set(0.0);
@@ -51,14 +51,14 @@ void   Chute::SetPinMotorPower(double power)
 {
   m_pinMotor.Set(power);
 }
-double Chute::GetPinMotorEncoder(void)
-{
-  return m_pinMotorEncoder.GetPosition();
-}
+
 bool   Chute::GetCoralDetectSensor(void)
 {
   return false; //fix later
 }
 
-
+bool Chute::GetLimitSwitch(void)
+{
+  return m_pinMotorLimitSwitch.Get();
+}
 

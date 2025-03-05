@@ -6,6 +6,7 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc/Timer.h>
 
 /**
  * An example command.
@@ -29,7 +30,11 @@ class CmdChuteDefault
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-  private:
+  
+private:
   int m_currstate;
+
+  frc::Timer m_timer;
+
 };
 

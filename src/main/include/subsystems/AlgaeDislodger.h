@@ -30,7 +30,6 @@ class AlgaeDislodger : public frc2::SubsystemBase
  private:
  
   /// initialize Algae Dislodger motor 
-  rev::spark::SparkMax m_algaedislodger{ALGAE_DISLODGER_MOTOR_CAN_ID, rev::spark::SparkMax::MotorType::kBrushless};
-  rev::spark::SparkRelativeEncoder m_algaedislodgerEncoder = m_algaedislodger.GetEncoder(); 
+  rev::spark::SparkMax m_algaedislodger{ALGAE_DISLODGER_MOTOR_CAN_ID, rev::spark::SparkMax::MotorType::kBrushed};
 
 };

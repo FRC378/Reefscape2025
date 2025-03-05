@@ -91,6 +91,7 @@ double LimeLight::TrackBranch()
         return  std::clamp(pidoutput, -1.0, 1.0);
         //GetTargetHAngle();
     }
+    return 0;
 }
 
 //Function to return the optimal angle for the drivebase to be square to the reef

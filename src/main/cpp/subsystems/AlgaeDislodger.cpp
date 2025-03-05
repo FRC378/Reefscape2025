@@ -5,7 +5,7 @@
 #include "subsystems/AlgaeDislodger.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <rev/config/SparkMaxConfig.h>
-#include <iostream>
+#include "Robot.h"
 
 AlgaeDislodger::AlgaeDislodger() = default;
 
@@ -13,8 +13,22 @@ AlgaeDislodger::AlgaeDislodger() = default;
 void AlgaeDislodger::Periodic() 
 {
 
-  frc::SmartDashboard::PutNumber("Ew",  fmod(m_algaedislodgerEncoder.GetPosition(), 1)*360);
-  //NOTE: SPARKMAX CONFIG CONVERSION FACTOR IS 0.01
+  const double deadband  = 0.2;
+  const double uppower   = 0.5;
+  const double downpower = 0.5;
+  double axis = g_robotContainer.m_ctrl.GetRightX(); //Positive is Left - DOWN
+  if( (axis > deadband)  ) 
+  {
+    SetAlgaeDislodgerMotorPower(downpower);
+  }
+  else if( (axis < -deadband)  )
+  {
+    SetAlgaeDislodgerMotorPower(-uppower);
+  }
+  else
+  {
+    SetAlgaeDislodgerMotorPower(0.0);
+  }
 }
 
 void AlgaeDislodger::StopMotor(void)
