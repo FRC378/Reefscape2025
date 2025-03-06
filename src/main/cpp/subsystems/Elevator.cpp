@@ -18,7 +18,7 @@ Elevator::Elevator()
         .SetIdleMode(rev::spark::SparkBaseConfig::IdleMode::kBrake)
         .SmartCurrentLimit(40)
         .Inverted(true)
-        .OpenLoopRampRate(1.0);
+        .OpenLoopRampRate(0.25);
 //      .ClosedLoopRampRate(0.3);
 
   motorConfig.encoder

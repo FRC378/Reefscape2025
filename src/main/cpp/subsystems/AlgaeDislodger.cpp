@@ -13,7 +13,7 @@ AlgaeDislodger::AlgaeDislodger() = default;
 void AlgaeDislodger::Periodic() 
 {
 
-  const double deadband  = 0.2;
+  const double deadband  = 0.5;
   const double uppower   = 0.5;
   const double downpower = 0.5;
   double axis = g_robotContainer.m_ctrl.GetRightX(); //Positive is Left - DOWN

@@ -17,9 +17,9 @@ void CmdClimberDefault::Initialize()
 }
 void CmdClimberDefault::Execute() 
 {
-  const double deadband = 0.2;
-  const double uppower   = 0.5;
-  const double downpower = 0.5;
+  const double deadband = 0.5;
+  const double uppower   = 0.75;
+  const double downpower = 0.75;
   double axis = -g_robotContainer.m_ctrl.GetRightY();
   if( (axis > deadband) && !g_robotContainer.m_climber.GetUpperLimitSwitch() ) 
   {

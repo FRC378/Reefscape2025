@@ -18,20 +18,20 @@ Chute::Chute()
 void Chute::Periodic() 
 {
 
-  const double uppower   = 0.2;
-  const double downpower = 0.2;
+  const double pinUpPower  = 0.5;     //Pin UP, to eject coral
+  const double pinDownPower = 0.3;    //Pin down, to capture next coral
 
   bool Xbtn = g_robotContainer.m_ctrl.X().Get();
   bool Ybtn = g_robotContainer.m_ctrl.Y().Get();
 
 
-  if( Xbtn  ) 
+  if( Xbtn && !GetLimitSwitch() ) 
   {
-    SetPinMotorPower(uppower);
+    SetPinMotorPower(pinUpPower);
   }
   else if( Ybtn  )
   {
-    SetPinMotorPower(downpower);
+    SetPinMotorPower(-pinDownPower);
   }
   else
   {
@@ -59,6 +59,6 @@ bool   Chute::GetCoralDetectSensor(void)
 
 bool Chute::GetLimitSwitch(void)
 {
-  return m_pinMotorLimitSwitch.Get();
+  return !m_pinMotorLimitSwitch.Get(); //Limit switch inverted
 }
 

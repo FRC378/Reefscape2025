@@ -9,17 +9,17 @@
 AlgaeIntake::AlgaeIntake()
 {
 
-  frc::SmartDashboard::PutNumber("AlgaeIntake_inPwr",   0.2 );
-  frc::SmartDashboard::PutNumber("AlgaeIntake_outPwr",  0.2 );
+  frc::SmartDashboard::PutNumber("AlgaeIntake_inPwr",   0.5 );
+  frc::SmartDashboard::PutNumber("AlgaeIntake_outPwr",  0.5 );
 }
 
 // This method will be called once per scheduler run
 void AlgaeIntake::Periodic() 
 {
 
-  const double deadband  = 0.2;
-  const double uppower   = 0.5;
-  const double downpower = 0.5;
+  const double deadband  = 0.5;
+  const double uppower   = 0.9;
+  const double downpower = 0.9;
   double axis = g_robotContainer.m_ctrl.GetLeftX(); //Positive is Left - DOWN
   if( (axis > deadband)  ) 
   {
@@ -46,7 +46,7 @@ void AlgaeIntake::Periodic()
   }
   else if( Bbtn  )
   {
-    SetIntakeMotorPower(outPwr);
+    SetIntakeMotorPower(-outPwr);
   }
   else
   {
