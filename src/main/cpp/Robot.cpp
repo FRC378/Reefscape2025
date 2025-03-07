@@ -27,6 +27,10 @@ Robot::Robot()
   g_robotContainer.m_elevator.Stop();
   g_robotContainer.m_elevator.ZeroEncoder();
 
+  g_robotContainer.m_drivetrain.ResetDriveEncoders();
+  g_robotContainer.m_drivetrain.ResetTurnEncoders();
+  g_robotContainer.m_drivetrain.ResetOdometry();
+
 
 }
 
@@ -91,6 +95,24 @@ int main() {
 // WriteToSmartDashboard
 void WriteToSmartDashboard(void)
 {
+
+  // //XBox Controllers
+  // frc::SmartDashboard::PutNumber("Xbox Left-Y",   g_robotContainer.m_driver.GetLeftY()    ); 
+  // frc::SmartDashboard::PutNumber("Xbox Left-X",   g_robotContainer.m_driver.GetLeftX()    ); 
+  // frc::SmartDashboard::PutNumber("Xbox Right-X",  g_robotContainer.m_driver.GetRightX()   ); 
+
+  //Gyro
+  frc::SmartDashboard::PutBoolean("Gyro_IsConn",  g_robotContainer.m_drivetrain.IsGyroConnected() );
+  frc::SmartDashboard::PutNumber( "Gyro_Yaw",     g_robotContainer.m_drivetrain.GetGyroYaw() ); 
+
+  //Odometry
+  frc::SmartDashboard::PutNumber( "odoX",  g_robotContainer.m_drivetrain.GetOdometryX() ); 
+  frc::SmartDashboard::PutNumber( "odoY",  g_robotContainer.m_drivetrain.GetOdometryY() ); 
+  frc::SmartDashboard::PutNumber( "odoH",  g_robotContainer.m_drivetrain.GetOdometryHeading() ); 
+
+
+  //Time
+  frc::SmartDashboard::PutNumber("MatchTime",  (double)g_robotContainer.m_timer.GetMatchTime() );       //Match Time
 
 
 }

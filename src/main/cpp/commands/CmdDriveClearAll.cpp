@@ -5,15 +5,18 @@
 #include "commands/CmdDriveClearAll.h"
 #include "Robot.h"
 
-CmdDriveClearAll::CmdDriveClearAll() 
-{
-}
-
+CmdDriveClearAll::CmdDriveClearAll() {}
 
 void CmdDriveClearAll::Initialize() 
 {
-
   std::cout<< "CmdDriveClearAll" << std::endl;
+
+
+  g_robotContainer.m_drivetrain.ZeroGyro();
+  g_robotContainer.m_drivetrain.ResetDriveEncoders();
+  g_robotContainer.m_drivetrain.ResetTurnEncoders();
+  g_robotContainer.m_drivetrain.ResetOdometry();
+
 }
 
 
@@ -25,5 +28,6 @@ void CmdDriveClearAll::End(bool interrupted) {}
 
 bool CmdDriveClearAll::IsFinished() 
 {
-  return true;    //Wait for Gyros to calibrate here?
+  //Wait for gyro to complete calibration Here?
+  return true;
 }

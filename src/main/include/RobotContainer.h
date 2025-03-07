@@ -8,6 +8,7 @@
 
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/smartdashboard/SendableChooser.h>
+#include <frc/Timer.h>
 
 //Subsystems
 #include "subsystems/Drivetrain.h"     
@@ -26,7 +27,7 @@ class RobotContainer {
 
 
   //****************Controllers*******************
-  //frc2::CommandXboxController m_driver {0};
+  frc2::CommandXboxController m_driver {0};
   frc2::CommandXboxController m_ctrl   {1};
 
   //****************Subsystems*******************
@@ -42,7 +43,7 @@ class RobotContainer {
 
 
 
-
+  frc::Timer     m_timer;
   frc2::Command* GetAutonomousCommand();
 
  private:

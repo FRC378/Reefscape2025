@@ -5,13 +5,13 @@
 #include "commands/CmdDriveStop.h"
 #include "Robot.h"
 
-
 CmdDriveStop::CmdDriveStop() 
 {
+
 }
 
 void CmdDriveStop::Initialize() 
 {
-  
+  g_robotContainer.m_drivetrain.Stop();
   std::cout<< "CmdDriveStop" << std::endl;
 }
