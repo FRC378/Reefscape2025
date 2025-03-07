@@ -40,11 +40,6 @@ void Drivetrain::Periodic()
   m_odometry.Update( m_gyro.GetRotation2d()  ,
                     {m_frontLeft.GetPosition(), m_frontRight.GetPosition(), m_backLeft.GetPosition(), m_backRight.GetPosition()});
 
-
-  m_field.SetRobotPose(m_odometry.GetPose());
-  frc::SmartDashboard::PutData("Field", &m_field);                  
-
-
   //Drive Type
   frc::SmartDashboard::PutBoolean( "DriveType", m_driveType);
 
@@ -163,12 +158,14 @@ double Drivetrain::GetGyroYaw(void)            //yaw: -inf to +inf
 void   Drivetrain::ZeroGyro(void)
 {
   m_gyro.SetYaw( units::degree_t{0} );
+  std::cout << "ZeroGyro" << std::endl;
 }
 
 
 // --- Odometry ---
 void Drivetrain::ResetOdometry(void)
 {
+    std::cout << "ResetOdometry" << std::endl;
   //Reset to (0,0)
   // ** This needs to be fixed.  Seems like there is some state storage in odometry, and this does not fully clear it
   m_odometry.ResetPosition (  frc::Rotation2d{},

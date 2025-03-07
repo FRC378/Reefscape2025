@@ -30,10 +30,38 @@ void CmdDriveWithGamepad::Execute()
   double leftX  = -frc::ApplyDeadband( g_robotContainer.m_driver.GetLeftX(),  DEADBAND, 1.0 );  //invert: Positive is left
   double rightX = -frc::ApplyDeadband( g_robotContainer.m_driver.GetRightX(), DEADBAND, 1.0 );  //Invert: Positive is CCW
 
+  bool   leftBumper  = g_robotContainer.m_driver.LeftBumper().Get();
+  bool   rightBumper = g_robotContainer.m_driver.RightBumper().Get();
+
+  //Define default Drive Power
+  double xyScaleValue  = 0.7;
+  double rScaleValue   = 0.7;  
+
+  //Creep Mode
+  if( leftBumper )
+  {
+    xyScaleValue  = 0.3;
+    rScaleValue   = 0.3;  
+  }
+  //Turbo Mode
+  else if( rightBumper )
+  {
+    xyScaleValue  = 0.9;
+    rScaleValue   = 0.9;  
+  }
+
+  //Apply scaling
+  double fwdrev    = leftY  * xyScaleValue; 
+  double rightleft = leftX  * xyScaleValue;    
+  double rotate    = rightX * rScaleValue;
 
 
-  //WPILib kinematics uses X-axis as forward, and Y-axis sideways.  Swap joystick inputs when calling Drive
-  g_robotContainer.m_drivetrain.Drive(leftY, leftX, rightX,  g_robotContainer.m_drivetrain.GetDriveType() );
+
+  //FYI: WPILib kinematics calls X-axis as forward, and Y-axis sideways
+  // The XBox joysitck axis names do not align with Drive Call, becasue Drive is in WPI kinematcs frame
+  g_robotContainer.m_drivetrain.Drive(fwdrev, rightleft, rotate,  g_robotContainer.m_drivetrain.GetDriveType() );
+
+//g_robotContainer.m_drivetrain.Drive(leftY,  leftX,     rightX,  g_robotContainer.m_drivetrain.GetDriveType() );
 
 }
 

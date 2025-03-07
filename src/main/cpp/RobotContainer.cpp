@@ -24,6 +24,7 @@
 #include "commands/CmdPrintText.h"
 #include "commands/CmdDriveTypeToggle.h"
 #include "commands/CmdDriveWithPower.h"
+#include "commands/CmdDriveZeroGyro.h"
 #include "commands/GrpTest1.h"
 
 
@@ -83,7 +84,12 @@ void RobotContainer::ConfigureBindings()
   // m_ctrl.POVRight().OnTrue( new CmdElevatorSetPosition(5.0));
 
 
+
+
   //Driver Buttons
+  m_driver.X().OnTrue( new CmdDriveForcePark() );
+  m_driver.Y().OnTrue( new CmdDriveForceTurnAngle( 0.0 ) );
+  m_driver.Start().OnTrue( new CmdDriveZeroGyro() );
 
 
 
