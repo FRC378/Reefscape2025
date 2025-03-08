@@ -136,6 +136,9 @@ void SwerveModule::Periodic()
   // frc::SmartDashboard::PutNumber(m_moduleID + "-DrvPow",  m_driveMotor.Get() ); 
   // frc::SmartDashboard::PutNumber(m_moduleID + "-TrnPwr",  m_turnMotor.Get()  );
 
+  //Drive Motor Temperature
+  frc::SmartDashboard::PutNumber(m_moduleID + "-DrvTemp",    m_driveMotor.GetMotorTemperature() ); 
+
 }
 
 
