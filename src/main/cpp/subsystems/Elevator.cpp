@@ -5,6 +5,7 @@
 #include "subsystems/Elevator.h"
 #include <rev/config/SparkMaxConfig.h>
 #include <iostream>
+#include <cmath>
 #include <frc/smartdashboard/SmartDashboard.h>
 
 
@@ -27,8 +28,8 @@ Elevator::Elevator()
 
   motorConfig.closedLoop
         .SetFeedbackSensor(rev::spark::ClosedLoopConfig::FeedbackSensor::kPrimaryEncoder)
-        .Pid(0.05, 0, 0)
-        .OutputRange(-.09, 0.1);
+        .Pid(0.1, 0, 0)
+        .OutputRange(-.7, 0.7);
 
   motorConfig.closedLoop.maxMotion
         .MaxVelocity( 1000.0 )
@@ -51,6 +52,12 @@ void Elevator::Periodic()
   frc::SmartDashboard::PutBoolean("ElevatorUpperSw",  GetUpperLimitSwitch() );
   frc::SmartDashboard::PutBoolean("ElevatorLowerSw",  GetLowerLimitSwitch() );
   frc::SmartDashboard::PutNumber( "ElevatorVelocity", m_motorEncoder.GetVelocity() );
+
+  //Check Lower limit switch for Home
+  if( GetLowerLimitSwitch() && ( abs(GetPosition()) > 0.2 ))
+  {
+    ZeroEncoder();
+  }
 
 }
 
@@ -76,9 +83,9 @@ void Elevator::Periodic()
   }
   void Elevator::SetPosition(double position)
   {
-    //m_motorPID.SetReference( position, rev::spark::SparkMax::ControlType::kPosition );  //Default PID
+    m_motorPID.SetReference( position, rev::spark::SparkMax::ControlType::kPosition );  //Default PID
 
-    m_motorPID.SetReference( position, rev::spark::SparkMax::ControlType::kMAXMotionPositionControl );  //MaxMotion
+    //m_motorPID.SetReference( position, rev::spark::SparkMax::ControlType::kMAXMotionPositionControl );  //MaxMotion
 
     //m_motorPID.SetReference( position, rev::spark::SparkMax::ControlType::kPosition, rev::spark::kSlot0, 0.01 );  //Arbitrary feed forward
 
@@ -92,6 +99,7 @@ void Elevator::Periodic()
  void   Elevator::ZeroEncoder(void)
  {
     m_motorEncoder.SetPosition(0.0);
+    std::cout << "ZeroElevator" << std::endl;
  }
 
 
