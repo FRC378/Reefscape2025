@@ -18,25 +18,25 @@ Chute::Chute()
 void Chute::Periodic() 
 {
 
-  const double pinUpPower  = 0.5;     //Pin UP, to eject coral
-  const double pinDownPower = 0.3;    //Pin down, to capture next coral
+  // const double pinUpPower  = 0.5;     //Pin UP, to eject coral
+  // const double pinDownPower = 0.3;    //Pin down, to capture next coral
 
-  bool Xbtn = g_robotContainer.m_ctrl.X().Get();
-  bool Ybtn = g_robotContainer.m_ctrl.Y().Get();
+  // bool Xbtn = g_robotContainer.m_ctrl.X().Get();
+  // bool Ybtn = g_robotContainer.m_ctrl.Y().Get();
 
 
-  if( Xbtn && !GetLimitSwitch() ) 
-  {
-    SetPinMotorPower(pinUpPower);
-  }
-  else if( Ybtn  )
-  {
-    SetPinMotorPower(-pinDownPower);
-  }
-  else
-  {
-    SetPinMotorPower(0.0);
-  }
+  // if( Xbtn && !GetLimitSwitch() ) 
+  // {
+  //   SetPinMotorPower(pinUpPower);
+  // }
+  // else if( Ybtn  )
+  // {
+  //   SetPinMotorPower(-pinDownPower);
+  // }
+  // else
+  // {
+  //   SetPinMotorPower(0.0);
+  // }
 
 
   frc::SmartDashboard::PutBoolean("ChutePinLimitSw",  GetLimitSwitch() );

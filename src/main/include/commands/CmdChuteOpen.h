@@ -15,13 +15,13 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdChuteDefault
-    : public frc2::CommandHelper<frc2::Command, CmdChuteDefault> {
+class CmdChuteOpen
+    : public frc2::CommandHelper<frc2::Command, CmdChuteOpen> {
  public:
   /* You should consider using the more terse Command factories API instead
    * https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands
    */
-  CmdChuteDefault();
+  CmdChuteOpen();
 
   void Initialize() override;
 
@@ -30,11 +30,8 @@ class CmdChuteDefault
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-  
-private:
-  int m_currstate;
+
+  private:
 
   frc::Timer m_timer;
-
 };
-

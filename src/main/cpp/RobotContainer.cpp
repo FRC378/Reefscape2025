@@ -10,12 +10,14 @@
 
 #include "commands/CmdPrintText.h"
 #include "commands/CmdClimberDefault.h"
-#include "commands/CmdElevatorSetPosition.h"
 #include "commands/CmdElevatorDefault.h"
-#include "commands/CmdAlgaeDislodgerDeploy.h"
-#include "commands/CmdAlgaeDislodgerRetract.h"
-#include "commands/CmdAlgaeIntakeEject.h"
-#include "commands/CmdChuteDefault.h"
+
+#include "commands/CmdElevatorSetPosition.h"
+#include "commands/CmdChuteClose.h"
+#include "commands/CmdChuteOpen.h"
+// #include "commands/CmdAlgaeDislodgerDeploy.h"
+// #include "commands/CmdAlgaeDislodgerRetract.h"
+// #include "commands/CmdAlgaeIntakeEject.h"
 
 #include "commands/CmdDriveWithGamepad.h"
 #include "commands/CmdDriveClearAll.h"
@@ -40,7 +42,7 @@ RobotContainer::RobotContainer()
   m_drivetrain.SetDefaultCommand( CmdDriveWithGamepad() );
   m_elevator.SetDefaultCommand( CmdElevatorDefault() );
   m_climber.SetDefaultCommand( CmdClimberDefault() );
-  m_chute.SetDefaultCommand( CmdChuteDefault() );
+
 
   //******************** Dashboard Buttons *******************************
   frc::SmartDashboard::PutData( "CmdDriveClearAll",  new CmdDriveClearAll() );
@@ -65,7 +67,12 @@ RobotContainer::RobotContainer()
 
 void RobotContainer::ConfigureBindings() 
 {
-  // //Controller Buttons
+  //Controller Buttons
+  m_ctrl.RightTrigger().OnTrue(  new CmdChuteOpen()  ); //Open chute when pressed
+  m_ctrl.RightTrigger().OnFalse( new CmdChuteClose() ); //Close when released
+
+
+
   // m_ctrl.A().OnTrue( new CmdPrintText("A Button"));
   // m_ctrl.B().OnTrue( new CmdPrintText("B Button"));
   // m_ctrl.X().OnTrue( new CmdAlgaeDislodgerDeploy());
