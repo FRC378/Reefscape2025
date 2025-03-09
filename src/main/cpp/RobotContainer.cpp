@@ -51,7 +51,7 @@ RobotContainer::RobotContainer()
   frc::SmartDashboard::PutData( "Force 90",       new CmdDriveForceTurnAngle( 90.0 ) );
 
   frc::SmartDashboard::PutData( "DriveToggle",    new CmdDriveTypeToggle() );
-//frc::SmartDashboard::PutData( "DriveWithPower", new CmdDriveWithPower( 0.15, 20, 0) );
+  frc::SmartDashboard::PutData( "DriveWithPower", new CmdDriveWithPower( .5, 150, 0) );
   frc::SmartDashboard::PutData( "GprTest1",       new GrpTest1() );
 
 

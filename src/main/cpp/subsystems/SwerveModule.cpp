@@ -72,8 +72,8 @@ SwerveModule::SwerveModule(  int driveCanID, int turnCanID, int encoderID, doubl
 
   driveMotorConfig.closedLoop
               .SetFeedbackSensor(rev::spark::ClosedLoopConfig::FeedbackSensor::kPrimaryEncoder)
-              .Pid(0.01, 0, 0)
-              .VelocityFF(0.9/DRIVE_VELOCITY_MAX)   //********* THIS NEEDS TO BE CALIBRATED ******
+              .Pid(0.05, 0, 0)
+              .VelocityFF( 0.075 )          // 0.7 pwr = 9.7ft/sec  = .075-ish
               .OutputRange(-.95, 0.95);
 
   m_driveMotor.Configure( driveMotorConfig,
@@ -109,6 +109,7 @@ SwerveModule::SwerveModule(  int driveCanID, int turnCanID, int encoderID, doubl
   //-- Turn Motor Absolute Encoder --
   m_analogEncoder.SetInverted(false);
 
+  m_maxVelocity = 0;
 
 
 }
@@ -138,6 +139,15 @@ void SwerveModule::Periodic()
 
   //Drive Motor Temperature
   frc::SmartDashboard::PutNumber(m_moduleID + "-DrvTemp",    m_driveMotor.GetMotorTemperature() ); 
+
+
+  //Velocity Tests
+  if( GetDriveVelocity() > m_maxVelocity)
+  {
+    m_maxVelocity = GetDriveVelocity();
+  }
+  frc::SmartDashboard::PutNumber(m_moduleID + "-MaxVel",    m_maxVelocity ); 
+
 
 }
 
@@ -223,6 +233,7 @@ void SwerveModule::AlignTurnEncoderToAbsouteEncoder(void )
 void   SwerveModule::ResetDriveEncoder(void)
 {
     m_driveEncoder.SetPosition(0);
+    m_maxVelocity = 0;
 }
 double SwerveModule::GetDriveEncoderPosition(void)
 {
@@ -239,5 +250,9 @@ void SwerveModule::SetDriveVelocity( double speed )
 double SwerveModule::GetDriveVelocity( void )
 {
   return m_driveEncoder.GetVelocity();
+}
+double SwerveModule::GetDriveTemp(void)
+{
+  return m_driveMotor.GetMotorTemperature();
 }
 

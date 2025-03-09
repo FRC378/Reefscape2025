@@ -43,6 +43,15 @@ void Drivetrain::Periodic()
   //Drive Type
   frc::SmartDashboard::PutBoolean( "DriveType", m_driveType);
 
+  //Drive Motor Temperatures!
+  const double DriveTempError = 55.0;
+  bool isTempError = false;
+  if( m_frontLeft.GetDriveTemp() > DriveTempError) isTempError=true;
+  if( m_frontRight.GetDriveTemp()> DriveTempError) isTempError=true;
+  if( m_backLeft.GetDriveTemp()  > DriveTempError) isTempError=true;
+  if( m_backRight.GetDriveTemp() > DriveTempError) isTempError=true;
+  frc::SmartDashboard::PutBoolean( "DriveMorotTempStatus", !isTempError); //Green when not temp error
+
 }
 
 

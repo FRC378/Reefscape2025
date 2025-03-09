@@ -50,6 +50,7 @@ class SwerveModule : public frc2::SubsystemBase {
   double GetDriveEncoderPosition(void);
   void   SetDriveVelocity( double speed ); //in ft/sec
   double GetDriveVelocity( void );
+  double GetDriveTemp(void);
 
  private:
 
@@ -69,5 +70,6 @@ class SwerveModule : public frc2::SubsystemBase {
 
   //For Debugging
   std::string m_moduleID;
+  double      m_maxVelocity;
 
 };
