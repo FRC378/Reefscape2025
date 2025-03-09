@@ -11,8 +11,8 @@
 
 
 #define ELEVATOR_HOME_DEFAULT 0.0
-#define ELEVATOR_L1_DEFAULT   110.0
-#define ELEVATOR_L2_DEFAULT   250.0
+#define ELEVATOR_L2_DEFAULT   110.0
+#define ELEVATOR_L3_DEFAULT   250.0
 #define ELEVATOR_AUX_DEFAULT  50.0
 
 
@@ -52,8 +52,8 @@ Elevator::Elevator()
 
   //set Position Defaults
   frc::SmartDashboard::PutNumber( "ElevatorLevelHome", ELEVATOR_HOME_DEFAULT );
-  frc::SmartDashboard::PutNumber( "ElevatorLevelL1",   ELEVATOR_L1_DEFAULT   );
   frc::SmartDashboard::PutNumber( "ElevatorLevelL2",   ELEVATOR_L2_DEFAULT   );
+  frc::SmartDashboard::PutNumber( "ElevatorLevelL3",   ELEVATOR_L3_DEFAULT   );
   frc::SmartDashboard::PutNumber( "ElevatorLevelAux",  ELEVATOR_AUX_DEFAULT  );
 
 }
@@ -115,12 +115,12 @@ void Elevator::Periodic()
         SetPosition( frc::SmartDashboard::GetNumber( "ElevatorLevelHome", ELEVATOR_HOME_DEFAULT ) );
         break;
 
-      case ELEVATOR_L1:
-        SetPosition( frc::SmartDashboard::GetNumber( "ElevatorLevelL1", ELEVATOR_L1_DEFAULT ) );
+      case ELEVATOR_L2:
+        SetPosition( frc::SmartDashboard::GetNumber( "ElevatorLevelL2", ELEVATOR_L2_DEFAULT ) );
         break;
 
-     case ELEVATOR_L2:
-        SetPosition( frc::SmartDashboard::GetNumber( "ElevatorLevelL2", ELEVATOR_L2_DEFAULT ) );
+     case ELEVATOR_L3:
+        SetPosition( frc::SmartDashboard::GetNumber( "ElevatorLevelL3", ELEVATOR_L3_DEFAULT ) );
         break;
 
      case ELEVATOR_AUX:

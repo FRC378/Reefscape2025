@@ -10,7 +10,7 @@
 #include <rev/SparkClosedLoopController.h>
 #include "Constants.h"
 
-typedef enum { ELEVATOR_HOME, ELEVATOR_L1, ELEVATOR_L2, ELEVATOR_AUX } elevator_level_t;
+typedef enum { ELEVATOR_HOME, ELEVATOR_L2, ELEVATOR_L3, ELEVATOR_AUX } elevator_level_t;
 
 class Elevator : public frc2::SubsystemBase {
  public:
