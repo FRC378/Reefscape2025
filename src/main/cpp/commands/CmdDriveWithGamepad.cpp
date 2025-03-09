@@ -57,9 +57,15 @@ void CmdDriveWithGamepad::Execute()
 
 
 
-  //FYI: WPILib kinematics calls X-axis as forward, and Y-axis sideways
+  //WPILib kinematics calls X-axis as forward, and Y-axis sideways
   // The XBox joysitck axis names do not align with Drive Call, becasue Drive is in WPI kinematcs frame
-  g_robotContainer.m_drivetrain.Drive(fwdrev, rightleft, rotate,  g_robotContainer.m_drivetrain.GetDriveType() );
+
+  //if Driver A Btn is pressed, drive in Robot Orientated mode, but with inverted axis
+
+  if( g_robotContainer.m_driver.A().Get() )
+    g_robotContainer.m_drivetrain.Drive(-fwdrev, -rightleft, rotate,  Drivetrain::ROBOTCENTRIC );
+  else
+    g_robotContainer.m_drivetrain.Drive(fwdrev, rightleft, rotate,  g_robotContainer.m_drivetrain.GetDriveType() );
 
 //g_robotContainer.m_drivetrain.Drive(leftY,  leftX,     rightX,  g_robotContainer.m_drivetrain.GetDriveType() );
 
