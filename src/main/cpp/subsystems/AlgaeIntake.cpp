@@ -20,12 +20,15 @@ void AlgaeIntake::Periodic()
   const double deadband  = 0.5;
   const double uppower   = 0.9;
   const double downpower = 0.9;
-  double axis = g_robotContainer.m_ctrl.GetLeftX(); //Positive is Left - DOWN
-  if( (axis > deadband)  ) 
+  double axis = g_robotContainer.m_ctrl.GetLeftX(); 
+
+  //Right is DOWN (+ axis)
+  //Left is UP    (- axis)
+  if( (axis > deadband)  )    
   {
     SetSwingMotorPower(downpower);
   }
-  else if( (axis < -deadband)  )
+  else if( (axis < -deadband) && ! GetUpperLimitSwitch() )
   {
     SetSwingMotorPower(-uppower);
   }
@@ -54,18 +57,18 @@ void AlgaeIntake::Periodic()
   }
 
 
+  frc::SmartDashboard::PutBoolean("AlgaeIntakeLimitSw", GetUpperLimitSwitch() );
+
 }
 
 
 
 bool AlgaeIntake::GetUpperLimitSwitch(void)
 {
- //return m_intakeMotor.GetForwardLimitSwitch().Get();
- return false;
+ return !m_swingMotorTopLimitSwitch.Get(); 
 }
 bool AlgaeIntake::GetLowerLimitSwitch(void)
 {
- //return m_intakeMotor.GetReverseLimitSwitch().Get();
  return false;
 }
 void AlgaeIntake::StopMotors(void)

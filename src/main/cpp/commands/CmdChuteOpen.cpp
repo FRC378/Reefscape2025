@@ -16,7 +16,7 @@ CmdChuteOpen::CmdChuteOpen()
 void CmdChuteOpen::Initialize() 
 {
   //Drive toward LimitSwitch
-  g_robotContainer.m_chute.SetPinMotorPower( 0.5 );
+  g_robotContainer.m_chute.SetPinMotorPower( 0.75 );
 
   //Set timer as safety
   m_timer.Reset();
@@ -45,7 +45,7 @@ bool CmdChuteOpen::IsFinished()
     return true;
 
   //Safety Timeout!
-  if( m_timer.HasElapsed( units::second_t(2.0) ) )
+  if( m_timer.HasElapsed( units::second_t(.75) ) )
   {
       std::cout<<"CmdChuteOpen: Timeout"<<std::endl;
       return true;

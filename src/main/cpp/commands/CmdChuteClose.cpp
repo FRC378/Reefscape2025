@@ -40,7 +40,7 @@ bool CmdChuteClose::IsFinished()
 {
 
   //Drive for time
-  if( m_timer.HasElapsed( units::second_t( 0.2 ) ) )
+  if( m_timer.HasElapsed( units::second_t( 0.25 ) ) )
       return true;
 
 

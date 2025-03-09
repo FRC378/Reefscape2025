@@ -6,6 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
+#include <frc/DigitalInput.h>
 #include "Constants.h"
 
 class AlgaeIntake : public frc2::SubsystemBase {
@@ -26,5 +27,7 @@ class AlgaeIntake : public frc2::SubsystemBase {
   rev::spark::SparkMax m_intakeMotor{ALGAEINTAKE_INTAKE_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushless};
 
   rev::spark::SparkMax m_swingMotor{ALGAEINTAKE_SWING_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushed};
+
+  frc::DigitalInput    m_swingMotorTopLimitSwitch{2};
 
 };
