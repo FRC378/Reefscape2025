@@ -34,7 +34,8 @@
 
 //Autos
 #include "commands/AutoDoNothing.h"
-
+#include "commands/AutoCrossLine.h"
+#include "commands/AutoStraightAhead.h"
 
 RobotContainer::RobotContainer() 
 {
@@ -57,6 +58,8 @@ RobotContainer::RobotContainer()
 
   //**********************  AUTOs ****************************************
   m_chooser.SetDefaultOption("Auto Do Nothing",    new AutoDoNothing() );
+  m_chooser.SetDefaultOption("Auto CrossLine",     new AutoCrossLine() );
+  m_chooser.SetDefaultOption("Auto StraightAhead", new AutoStraightAhead() );
 
 
 
@@ -87,8 +90,8 @@ void RobotContainer::ConfigureBindings()
 
 
   //Controller DPad: Elevator Control
-  m_ctrl.POVUp().OnTrue(    new CmdElevatorSetLevel( ELEVATOR_L2   ));
-  m_ctrl.POVRight().OnTrue( new CmdElevatorSetLevel( ELEVATOR_L1   ));
+  m_ctrl.POVUp().OnTrue(    new CmdElevatorSetLevel( ELEVATOR_L3   ));
+  m_ctrl.POVRight().OnTrue( new CmdElevatorSetLevel( ELEVATOR_L2   ));
   m_ctrl.POVDown().OnTrue(  new CmdElevatorSetLevel( ELEVATOR_HOME ));
 
   m_ctrl.POVLeft().OnTrue(  new CmdElevatorSetLevel( ELEVATOR_AUX  ));

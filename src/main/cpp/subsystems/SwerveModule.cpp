@@ -25,7 +25,8 @@
 //  Therefore,Max free speed = 5820 /60   / 6.75   * 4PI / 12 = 15 ft/sec
 // SparkMax reports back in rotations
 //   Diameter * pi / 6.75   results in drive distance in inches from SparkMax Rotations 
-#define DRIVE_ENCODER_FACTOR   ( (double)( 4.0 * M_PI)/ (6.75) )    //INCHES per rotation
+//  ** Due to tire wear, wheel diameter was measured at 3 7/8
+#define DRIVE_ENCODER_FACTOR   ( (double)( (3.875) * M_PI)/ (6.75) )    //INCHES per rotation
 
 // SparkMax reports back in rotations per minute,  12 inches per foot,  60 seconds in a minute
 //  velocity = DRIVE_ENCODER_FACTOR / ( ft_per_inch * seconds_per_minute )
