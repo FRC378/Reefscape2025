@@ -10,7 +10,7 @@ AlgaeIntake::AlgaeIntake()
 {
 
   frc::SmartDashboard::PutNumber("AlgaeIntake_inPwr",   0.5 );
-  frc::SmartDashboard::PutNumber("AlgaeIntake_outPwr",  0.5 );
+  frc::SmartDashboard::PutNumber("AlgaeIntake_outPwr",  0.75 );
 }
 
 // This method will be called once per scheduler run
