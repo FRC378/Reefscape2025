@@ -9,6 +9,14 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 
 
+
+#define ELEVATOR_HOME_DEFAULT 0.0
+#define ELEVATOR_L1_DEFAULT   102.0
+#define ELEVATOR_L2_DEFAULT   240.0
+#define ELEVATOR_AUX_DEFAULT  50.0
+
+
+
 Elevator::Elevator()
 {
 
@@ -28,8 +36,8 @@ Elevator::Elevator()
 
   motorConfig.closedLoop
         .SetFeedbackSensor(rev::spark::ClosedLoopConfig::FeedbackSensor::kPrimaryEncoder)
-        .Pid(0.1, 0, 0)
-        .OutputRange(-.7, 0.7);
+        .Pid(0.2, 0, 0)
+        .OutputRange(-.95, 0.95);
 
   motorConfig.closedLoop.maxMotion
         .MaxVelocity( 1000.0 )
@@ -40,6 +48,13 @@ Elevator::Elevator()
   m_elevator.Configure( motorConfig,
                     rev::spark::SparkMax::ResetMode::kResetSafeParameters,
                     rev::spark::SparkMax::PersistMode::kPersistParameters);
+
+
+  //set Position Defaults
+  frc::SmartDashboard::PutNumber( "ElevatorLevelHome", ELEVATOR_HOME_DEFAULT );
+  frc::SmartDashboard::PutNumber( "ElevatorLevelL1",   ELEVATOR_L1_DEFAULT   );
+  frc::SmartDashboard::PutNumber( "ElevatorLevelL2",   ELEVATOR_L2_DEFAULT   );
+  frc::SmartDashboard::PutNumber( "ElevatorLevelAux",  ELEVATOR_AUX_DEFAULT  );
 
 }
 
@@ -54,7 +69,7 @@ void Elevator::Periodic()
   frc::SmartDashboard::PutNumber( "ElevatorVelocity", m_motorEncoder.GetVelocity() );
 
   //Check Lower limit switch for Home
-  if( GetLowerLimitSwitch() && ( abs(GetPosition()) > 0.2 ))
+  if( GetLowerLimitSwitch() && ( fabs(GetPosition()) > 0.2 ))
   {
     ZeroEncoder();
   }
@@ -90,6 +105,31 @@ void Elevator::Periodic()
     //m_motorPID.SetReference( position, rev::spark::SparkMax::ControlType::kPosition, rev::spark::kSlot0, 0.01 );  //Arbitrary feed forward
 
   }
+
+  void   Elevator::SetLevel(elevator_level_t level)
+  {
+
+    switch(level)
+    {
+      case ELEVATOR_HOME:
+        SetPosition( frc::SmartDashboard::GetNumber( "ElevatorLevelHome", ELEVATOR_HOME_DEFAULT ) );
+        break;
+
+      case ELEVATOR_L1:
+        SetPosition( frc::SmartDashboard::GetNumber( "ElevatorLevelL1", ELEVATOR_L1_DEFAULT ) );
+        break;
+
+     case ELEVATOR_L2:
+        SetPosition( frc::SmartDashboard::GetNumber( "ElevatorLevelL2", ELEVATOR_L2_DEFAULT ) );
+        break;
+
+     case ELEVATOR_AUX:
+        SetPosition( frc::SmartDashboard::GetNumber( "ElevatorLevelAux", ELEVATOR_AUX_DEFAULT ) );
+        break;
+    }
+  }
+
+
   void Elevator::SetPower(double power)
   {
     //std::cout<<"SetPower"<<std::endl;

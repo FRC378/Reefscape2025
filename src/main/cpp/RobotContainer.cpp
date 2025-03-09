@@ -13,6 +13,7 @@
 #include "commands/CmdElevatorDefault.h"
 
 #include "commands/CmdElevatorSetPosition.h"
+#include "commands/CmdElevatorSetLevel.h"
 #include "commands/CmdChuteClose.h"
 #include "commands/CmdChuteOpen.h"
 // #include "commands/CmdAlgaeDislodgerDeploy.h"
@@ -84,12 +85,14 @@ void RobotContainer::ConfigureBindings()
   // //m_ctrl.RightTrigger().WhileTrue( score_algae );
 
 
-  // //Controller DPad
-  // m_ctrl.POVUp().OnTrue(    new CmdElevatorSetPosition(10.0));
-  // m_ctrl.POVDown().OnTrue(  new CmdElevatorSetPosition(0.0));
-  // m_ctrl.POVLeft().OnTrue(  new CmdElevatorSetPosition(7.5));
-  // m_ctrl.POVRight().OnTrue( new CmdElevatorSetPosition(5.0));
 
+  //Controller DPad: Elevator Control
+  m_ctrl.POVUp().OnTrue(    new CmdElevatorSetLevel( ELEVATOR_L2   ));
+  m_ctrl.POVRight().OnTrue( new CmdElevatorSetLevel( ELEVATOR_L1   ));
+  m_ctrl.POVDown().OnTrue(  new CmdElevatorSetLevel( ELEVATOR_HOME ));
+
+  m_ctrl.POVLeft().OnTrue(  new CmdElevatorSetLevel( ELEVATOR_AUX  ));
+ 
 
 
 
