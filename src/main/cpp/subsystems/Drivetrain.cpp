@@ -9,8 +9,8 @@
 #include <networktables/StructArrayTopic.h>
 
 //Define MAX drivetrain velocities
-static constexpr units::feet_per_second_t    kMaxVelocity = units::feet_per_second_t{  3.0 };
-static constexpr units::degrees_per_second_t kMaxRotation = units::degrees_per_second_t{ 125 }; 
+static constexpr units::feet_per_second_t    kMaxVelocity = units::feet_per_second_t{  12.0 };
+static constexpr units::degrees_per_second_t kMaxRotation = units::degrees_per_second_t{ 270.0 }; 
 
 #define METER2INCH(x) (x*39.3701)
 
