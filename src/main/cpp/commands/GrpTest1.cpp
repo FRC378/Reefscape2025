@@ -13,7 +13,10 @@
 #include "commands/CmdDriveToRelativePoint.h"
 #include "commands/CmdDriveTurnToHeading.h"
 #include "commands/CmdDriveTurnToOffsetAngle.h"
-
+#include "commands/CmdDriveToAprilTag.h"
+#include "commands/CmdElevatorSetLevel.h"
+#include "commands/CmdChuteOpen.h"
+#include "commands/CmdChuteClose.h"
 
 
 GrpTest1::GrpTest1() 
@@ -25,6 +28,27 @@ GrpTest1::GrpTest1()
     CmdDriveClearAll(),
 
     frc2::WaitCommand(0.25_s),
+
+    CmdDriveToAprilTag(0),
+
+
+    frc2::WaitCommand(0.25_s),
+
+    CmdElevatorSetLevel(ELEVATOR_L2),
+
+    frc2::WaitCommand(1.5_s),
+
+    CmdChuteOpen(),
+    frc2::WaitCommand(2.0_s),
+    CmdChuteClose(),
+
+
+    //Back off reef, bring elevator back down
+    CmdDriveToRelativePoint( 20.0, 0, 0, 0.2, true, 0),
+    frc2::WaitCommand(0.5_s),
+    CmdElevatorSetLevel( ELEVATOR_HOME ),
+
+
 
 
 /*
@@ -72,12 +96,14 @@ GrpTest1::GrpTest1()
   frc2::WaitCommand(0.1_s),
 
   */
-
+/*
     CmdPrintText("Starting DriveToAbsolutePoint test"),
     CmdDriveToAbsolutePoint( 30, 0,  0, 0.99, false, 0),
     CmdDriveToAbsolutePoint( 30, 30, 0, 0.99, false, 0),
     CmdDriveToAbsolutePoint(  0, 30, 0, 0.99, false, 0),
     CmdDriveToAbsolutePoint(  0, 0,  0, 0.99, true,  0),
+
+    */
 /*
     CmdDriveToAbsolutePoint( -40,  0,  -90,  0.5, false, 0),
     CmdDriveToAbsolutePoint( -40, -20, -180, 0.5, false, 0),
