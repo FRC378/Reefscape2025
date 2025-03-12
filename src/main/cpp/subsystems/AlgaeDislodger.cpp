@@ -7,7 +7,10 @@
 #include <rev/config/SparkMaxConfig.h>
 #include "Robot.h"
 
-AlgaeDislodger::AlgaeDislodger() = default;
+AlgaeDislodger::AlgaeDislodger()
+{
+  m_manualControl = false;
+}
 
 // This method will be called once per scheduler run
 void AlgaeDislodger::Periodic() 
@@ -20,14 +23,21 @@ void AlgaeDislodger::Periodic()
   if( (axis > deadband)  ) 
   {
     SetAlgaeDislodgerMotorPower(downpower);
+    m_manualControl = true;
   }
   else if( (axis < -deadband)  )
   {
     SetAlgaeDislodgerMotorPower(-uppower);
+    m_manualControl = true;
   }
   else
   {
-    SetAlgaeDislodgerMotorPower(0.0);
+    if( m_manualControl)
+    {
+      SetAlgaeDislodgerMotorPower(0.0);
+      m_manualControl = false;
+    }
+    
   }
 }
 
@@ -47,16 +57,5 @@ void AlgaeDislodger::SetAlgaeDislodgerMotorPower(double power)
   
 }
 
-bool AlgaeDislodger::GetLowerLimitSwitch(void)
-{
- return m_algaedislodger.GetReverseLimitSwitch().Get();
-    //return false; 
-}
-
-bool AlgaeDislodger::GetUpperLimitSwitch(void)
-{
-return m_algaedislodger.GetForwardLimitSwitch().Get();
-    //return false; 
-}
 
 

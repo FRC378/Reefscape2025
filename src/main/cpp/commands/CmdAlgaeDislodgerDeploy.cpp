@@ -12,7 +12,11 @@ CmdAlgaeDislodgerDeploy::CmdAlgaeDislodgerDeploy()
 // Called when the command is initially scheduled.
 void CmdAlgaeDislodgerDeploy::Initialize() 
 {
-  g_robotContainer.m_algaedislodger.SetAlgaeDislodgerMotorPower(0.1);
+  g_robotContainer.m_algaedislodger.SetAlgaeDislodgerMotorPower(-0.4);
+
+  //Start timer
+  m_timer.Reset();
+  m_timer.Start();
 
 }
 
@@ -26,12 +30,17 @@ void CmdAlgaeDislodgerDeploy::Execute()
 void CmdAlgaeDislodgerDeploy::End(bool interrupted) 
 {
   g_robotContainer.m_algaedislodger.StopMotor();
+  m_timer.Stop();
 }
 
 // Returns true when the command should end.
 bool CmdAlgaeDislodgerDeploy::IsFinished() 
 {
 
-  return g_robotContainer.m_algaedislodger.GetLowerLimitSwitch();
+  if( m_timer.HasElapsed( 0.75_s ) )
+    return true;
+
+  return false;
+
  
 }

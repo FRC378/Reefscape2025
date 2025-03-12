@@ -18,8 +18,6 @@ class AlgaeDislodger : public frc2::SubsystemBase
 
   void   StopMotor(void);
   void   SetAlgaeDislodgerMotorPower(double power);
-  bool   GetLowerLimitSwitch(void);
-  bool   GetUpperLimitSwitch(void);
   double GetAlgaeDislodgerMotorPower(void);
 
 
@@ -31,5 +29,7 @@ class AlgaeDislodger : public frc2::SubsystemBase
  
   /// initialize Algae Dislodger motor 
   rev::spark::SparkMax m_algaedislodger{ALGAE_DISLODGER_MOTOR_CAN_ID, rev::spark::SparkMax::MotorType::kBrushed};
+
+  bool m_manualControl;
 
 };

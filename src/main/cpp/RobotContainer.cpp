@@ -41,6 +41,7 @@
 #include "commands/AutoStraightAhead.h"
 #include "commands/AutoRightSide.h"
 #include "commands/AutoLeftSide.h"
+#include "commands/AutoStraightWithAlgae.h"
 
 RobotContainer::RobotContainer() 
 {
@@ -72,6 +73,8 @@ RobotContainer::RobotContainer()
   m_chooser.AddOption("Auto StraightAhead",      new AutoStraightAhead() );
   m_chooser.AddOption("Auto RightSide",          new AutoRightSide() );
   m_chooser.AddOption("Auto LeftSide",           new AutoLeftSide()  );
+  m_chooser.AddOption("Auto StraightWithAlgae",  new AutoStraightWithAlgae()  );
+
 
   frc::SmartDashboard::PutData("Auto Mode", &m_chooser);
 
