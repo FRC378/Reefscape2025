@@ -14,7 +14,6 @@ class AlgaeIntake : public frc2::SubsystemBase {
   AlgaeIntake();
 
   bool   GetUpperLimitSwitch(void);
-  bool   GetLowerLimitSwitch(void);
   void   StopMotors(void);
   void   SetSwingMotorPower(double power);
   void   SetIntakeMotorPower(double power);

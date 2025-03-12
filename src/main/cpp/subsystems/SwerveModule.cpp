@@ -124,14 +124,14 @@ void SwerveModule::Periodic()
   //-------------
 
 
-  //Turn Encoder
-  frc::SmartDashboard::PutNumber(m_moduleID + "-TurnEnc",   GetTurnEncoderPosition() ); 
-  frc::SmartDashboard::PutNumber(m_moduleID + "-TurnAbs",   GetTurnEncoderAbsolutePosition() );  
-  frc::SmartDashboard::PutNumber(m_moduleID + "-TurnAbsRaw",GetTurnEncoderAbsolutePositionRaw() );  
+  // //Turn Encoder
+  // frc::SmartDashboard::PutNumber(m_moduleID + "-TurnEnc",   GetTurnEncoderPosition() ); 
+  // frc::SmartDashboard::PutNumber(m_moduleID + "-TurnAbs",   GetTurnEncoderAbsolutePosition() );  
+  // frc::SmartDashboard::PutNumber(m_moduleID + "-TurnAbsRaw",GetTurnEncoderAbsolutePositionRaw() );  
 
-  // //Drive
-  frc::SmartDashboard::PutNumber(m_moduleID + "-DrvVel",    GetDriveVelocity()  ); 
-  frc::SmartDashboard::PutNumber(m_moduleID + "-DrvEnc",    GetDriveEncoderPosition() ); 
+  // // //Drive
+  // frc::SmartDashboard::PutNumber(m_moduleID + "-DrvVel",    GetDriveVelocity()  ); 
+  // frc::SmartDashboard::PutNumber(m_moduleID + "-DrvEnc",    GetDriveEncoderPosition() ); 
 
 
   // //Powers (when not using PID)
@@ -142,12 +142,12 @@ void SwerveModule::Periodic()
   frc::SmartDashboard::PutNumber(m_moduleID + "-DrvTemp",    m_driveMotor.GetMotorTemperature() ); 
 
 
-  //Velocity Tests
-  if( GetDriveVelocity() > m_maxVelocity)
-  {
-    m_maxVelocity = GetDriveVelocity();
-  }
-  frc::SmartDashboard::PutNumber(m_moduleID + "-MaxVel",    m_maxVelocity ); 
+  // //Velocity Tests
+  // if( GetDriveVelocity() > m_maxVelocity)
+  // {
+  //   m_maxVelocity = GetDriveVelocity();
+  // }
+  // frc::SmartDashboard::PutNumber(m_moduleID + "-MaxVel",    m_maxVelocity ); 
 
 
 }

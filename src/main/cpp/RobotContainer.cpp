@@ -29,6 +29,9 @@
 #include "commands/CmdDriveWithPower.h"
 #include "commands/CmdDriveZeroGyro.h"
 #include "commands/GrpTest1.h"
+#include "commands/CmdAlgaeIntakeRetract.h"
+#include "commands/CmdAlgaeIntakeDeploy.h"
+#include "commands/CmdAbortAll.h"
 
 
 
@@ -37,6 +40,7 @@
 #include "commands/AutoCrossLine.h"
 #include "commands/AutoStraightAhead.h"
 #include "commands/AutoRightSide.h"
+#include "commands/AutoLeftSide.h"
 
 RobotContainer::RobotContainer() 
 {
@@ -62,14 +66,12 @@ RobotContainer::RobotContainer()
 
 
   //**********************  AUTOs ****************************************
-  m_chooser.AddOption("Auto Do Nothing",         new AutoDoNothing() );
+  m_chooser.SetDefaultOption("Auto Do Nothing",  new AutoDoNothing() );
+
   m_chooser.AddOption("Auto CrossLine",          new AutoCrossLine() );
   m_chooser.AddOption("Auto StraightAhead",      new AutoStraightAhead() );
   m_chooser.AddOption("Auto RightSide",          new AutoRightSide() );
-
-  m_chooser.SetDefaultOption("Auto Do Nothing",  new AutoDoNothing() );
-
-
+  m_chooser.AddOption("Auto LeftSide",           new AutoLeftSide()  );
 
   frc::SmartDashboard::PutData("Auto Mode", &m_chooser);
 
@@ -82,18 +84,12 @@ void RobotContainer::ConfigureBindings()
   m_ctrl.RightTrigger().OnTrue(  new CmdChuteOpen()  ); //Open chute when pressed
 //m_ctrl.RightTrigger().OnFalse( new CmdChuteClose() ); //Close when released - Trigger doesn't close Chute anymore
 
+  m_ctrl.LeftBumper().OnTrue( new CmdAbortAll());
 
-
-  // m_ctrl.A().OnTrue( new CmdPrintText("A Button"));
-  // m_ctrl.B().OnTrue( new CmdPrintText("B Button"));
-  // m_ctrl.X().OnTrue( new CmdAlgaeDislodgerDeploy());
-  // m_ctrl.Y().OnTrue( new CmdAlgaeDislodgerRetract());
-
-  // m_ctrl.RightBumper().OnTrue( new CmdAlgaeIntakeEject());
-
-  // //m_ctrl.LeftTrigger().WhileTrue( score_coral );
-  // //m_ctrl.RightTrigger().WhileTrue( score_algae );
-
+  // A - Algae Intake Rollers IN  (in AlgaeIntake Subsystem)
+  // B - Algae Intake Rollers OUT (in AlgaeIntake Subsystem)
+  m_ctrl.X().OnTrue( new CmdAlgaeIntakeDeploy());
+  m_ctrl.Y().OnTrue( new CmdAlgaeIntakeRetract());
 
 
   //Controller DPad: Elevator Control

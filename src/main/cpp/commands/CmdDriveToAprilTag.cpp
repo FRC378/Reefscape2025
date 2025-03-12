@@ -102,7 +102,7 @@ void CmdDriveToAprilTag::Execute()
       //Keep moveing forward until we lose Apriltag
       if( !g_robotContainer.m_limelight3.IsTargetValid() )
       {
-  
+        m_timer.Restart();  //Restart timer
         m_currState++;
       }
       break;
@@ -133,6 +133,14 @@ void CmdDriveToAprilTag::Execute()
 
       m_prevXValue = currX;
       m_prevyValue = currY;
+
+
+      //Timeout - to prevent wheels from digging a hole in the carpet!
+      if( m_timer.HasElapsed( 3.0_s) )
+      {
+        std::cout<< "Timeout" << std::endl;
+        m_currState++; //DONE!
+      }
 
       break;
 

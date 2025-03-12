@@ -14,7 +14,7 @@ static constexpr units::degrees_per_second_t kMaxRotation = units::degrees_per_s
 
 #define METER2INCH(x) (x*39.3701)
 
-nt::StructArrayPublisher<frc::SwerveModuleState> publisher;
+//nt::StructArrayPublisher<frc::SwerveModuleState> publisher;
 
 Drivetrain::Drivetrain() :
         m_frontLeft { FRONTLEFT_DRIVE_CAN_ID,  FRONTLEFT_TURN_CAN_ID,  FRONTLEFT_ENCODER_ID,  FRONTLEFT_ENCODER_OFFSET,  "FL"},
@@ -25,7 +25,7 @@ Drivetrain::Drivetrain() :
 
   std::cout << "DriveTrain Starting" << std::endl;
   
-  publisher = nt::NetworkTableInstance::GetDefault().GetStructArrayTopic<frc::SwerveModuleState>("/SwerveStates").Publish();
+  //publisher = nt::NetworkTableInstance::GetDefault().GetStructArrayTopic<frc::SwerveModuleState>("/SwerveStates").Publish();
   
   m_driveType = FIELDCENTRIC;
 
@@ -50,7 +50,7 @@ void Drivetrain::Periodic()
   if( m_frontRight.GetDriveTemp()> DriveTempError) isTempError=true;
   if( m_backLeft.GetDriveTemp()  > DriveTempError) isTempError=true;
   if( m_backRight.GetDriveTemp() > DriveTempError) isTempError=true;
-  frc::SmartDashboard::PutBoolean( "DriveMorotTempStatus", !isTempError); //Green when not temp error
+  frc::SmartDashboard::PutBoolean( "DriveMotorTempStatus", !isTempError); //Green when not temp error
 
 }
 
@@ -85,7 +85,7 @@ void Drivetrain::Drive( double xValue, double yValue, double rValue, driveType d
   m_backLeft.SetDesiredState(   bl );
   m_backRight.SetDesiredState(  br );
 
-  publisher.Set(std::vector{ fl,fr,bl,br});
+  //publisher.Set(std::vector{ fl,fr,bl,br});
 
 }
 

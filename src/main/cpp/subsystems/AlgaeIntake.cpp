@@ -16,7 +16,7 @@ AlgaeIntake::AlgaeIntake()
 // This method will be called once per scheduler run
 void AlgaeIntake::Periodic() 
 {
-
+/*
   const double deadband  = 0.5;
   const double uppower   = 0.9;
   const double downpower = 0.9;
@@ -36,6 +36,7 @@ void AlgaeIntake::Periodic()
   {
     SetSwingMotorPower(0.0);
   }
+  */
 
   bool Abtn = g_robotContainer.m_ctrl.A().Get();
   bool Bbtn = g_robotContainer.m_ctrl.B().Get();
@@ -67,10 +68,7 @@ bool AlgaeIntake::GetUpperLimitSwitch(void)
 {
  return !m_swingMotorTopLimitSwitch.Get(); 
 }
-bool AlgaeIntake::GetLowerLimitSwitch(void)
-{
- return false;
-}
+
 void AlgaeIntake::StopMotors(void)
 {
     m_intakeMotor.Set(0.0);

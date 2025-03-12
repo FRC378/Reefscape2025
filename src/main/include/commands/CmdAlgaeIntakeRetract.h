@@ -6,6 +6,7 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc/Timer.h>
 
 /**
  * An example command.
@@ -29,4 +30,7 @@ class CmdAlgaeIntakeRetract
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+
+  private:
+  frc::Timer m_timer;
 };

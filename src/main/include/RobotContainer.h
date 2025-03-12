@@ -39,7 +39,7 @@ class RobotContainer {
   Elevator       m_elevator;
 
   LimeLight      m_limelight3{"limelight-vthree"};
-  LimeLight      m_limelight2{"limelight-vtwo"};     
+//LimeLight      m_limelight2{"limelight-vtwo"};       //Limelight 2 removed
 
 
 

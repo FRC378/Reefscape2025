@@ -23,7 +23,7 @@ AutoCrossLine::AutoCrossLine()
 
     //Just drive backwards the length of the robot with bumpers
     frc2::WaitCommand(2_s),
-    CmdDriveToRelativePoint( -36.0, 0, 0, 0.2, true, 0),
+    CmdDriveToRelativePoint( -40.0, 0, 0, 0.2, true, 0),
 
 
 

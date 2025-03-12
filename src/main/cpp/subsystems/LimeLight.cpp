@@ -15,9 +15,9 @@ LimeLight::LimeLight(std::string llname)
 {
     m_LLName = llname;
 
-  frc::SmartDashboard::PutNumber("LL_h1",  0.0 );
-  frc::SmartDashboard::PutNumber("LL_h2",  0.0 );
-  frc::SmartDashboard::PutNumber("LL_a1",  0.0 );
+//   frc::SmartDashboard::PutNumber("LL_h1",  0.0 );
+//   frc::SmartDashboard::PutNumber("LL_h2",  0.0 );
+//   frc::SmartDashboard::PutNumber("LL_a1",  0.0 );
 }
 
 // This method will be called once per scheduler run
@@ -49,7 +49,7 @@ double LimeLight::GetTargetVAngle(void)
 }
 double LimeLight::GetTargetDistance(void)
 {
-
+/*
   double h1 = frc::SmartDashboard::GetNumber("LL_h1",  0.0 );
   double h2 = frc::SmartDashboard::GetNumber("LL_h2",  0.0 );
   double a1 = frc::SmartDashboard::GetNumber("LL_a1",  0.0 );
@@ -64,6 +64,8 @@ double LimeLight::GetTargetDistance(void)
   double a2 = nt::NetworkTableInstance::GetDefault().GetTable(m_LLName)->GetNumber("ty", 0);
   
   return (h2-h1)/tan((a1+a2)*(PI/180));
+  */
+ return 0;
 
 }
 void   LimeLight::SetPipeline(int value)
@@ -138,8 +140,8 @@ void    LimeLight::RunLimeLight(void)
     frc::SmartDashboard::PutNumber (m_LLName + " TID",          GetTargetId() );
     frc::SmartDashboard::PutNumber (m_LLName + " HAngle",       GetTargetHAngle()  );
     frc::SmartDashboard::PutNumber (m_LLName + " YAngle",       GetTargetVAngle()  );
-    frc::SmartDashboard::PutNumber (m_LLName + " Range",        GetTargetDistance()  );
+  //frc::SmartDashboard::PutNumber (m_LLName + " Range",        GetTargetDistance()  );
     frc::SmartDashboard::PutNumber (m_LLName + " Last ID",      m_lastSeenID  );
     frc::SmartDashboard::PutNumber (m_LLName + " Target Yaw",   GetTargetYaw()  );
-    frc::SmartDashboard::PutNumber (m_LLName + " Track PID Out",TrackBranch()  );
+  //frc::SmartDashboard::PutNumber (m_LLName + " Track PID Out",TrackBranch()  );
 }
