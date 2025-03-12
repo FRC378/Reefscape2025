@@ -24,8 +24,8 @@ void CmdDriveTurnToHeading::Execute()
 {
 
   const double MAX_POWER = m_power;   // % of kMaxRotation in Drivetrain
-  const double MIN_POWER = 0.5;       // % of kMaxRotation in Drivetrain
-  const double TURN_Kp   = 0.1;
+  const double MIN_POWER = 0.01;     // % of kMaxRotation in Drivetrain
+  const double TURN_Kp   = 0.05;
 
   double delta_angle = m_heading - g_robotContainer.m_drivetrain.GetOdometryHeading();   // [-180 to +180]
 
@@ -33,9 +33,7 @@ void CmdDriveTurnToHeading::Execute()
   if(  delta_angle >  180.0) delta_angle -= 360.0; 
   if(  delta_angle < -180.0) delta_angle += 360.0;
 
-
-
-  double turn_power = abs( delta_angle * TURN_Kp ) + MIN_POWER;
+  double turn_power = abs( delta_angle * TURN_Kp );
 
   if( turn_power > MAX_POWER ) turn_power = MAX_POWER;
   if( turn_power < MIN_POWER ) turn_power = MIN_POWER;

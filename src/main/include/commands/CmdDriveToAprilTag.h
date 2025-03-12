@@ -37,6 +37,7 @@ class CmdDriveToAprilTag
   int    m_prevState;
 
   double m_prevXValue;
+  double m_prevyValue;
 
   double m_inputH;
 

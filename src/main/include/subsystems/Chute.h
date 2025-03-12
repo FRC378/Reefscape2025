@@ -8,6 +8,7 @@
 #include <rev/SparkMax.h>
 #include <frc/DigitalInput.h>
 #include "Constants.h"
+#include "commands/CmdChuteClose.h"
 
 class Chute : public frc2::SubsystemBase {
  public:
@@ -22,6 +23,9 @@ class Chute : public frc2::SubsystemBase {
   bool GetLimitSwitch(void);
   bool GetCoralDetectSensor(void);
 
+  void SetCoralOpen(bool value);
+  bool GetCoralOpen(void);
+
 
 
 
@@ -30,6 +34,15 @@ class Chute : public frc2::SubsystemBase {
   
   rev::spark::SparkMax m_pinMotor{CHUTE_PIN_MOTOR_CAN_ID,rev::spark::SparkMax::MotorType::kBrushed}; 
 
+
   frc::DigitalInput    m_pinMotorLimitSwitch{0};
+  frc::DigitalInput    m_coralDetect{3};
+  
+  bool                 m_coralOpenFlag;  //Coral Pin is OPEN
+  bool                 m_coralOpenAndClearFlag;
+
+
+  bool c1;
+  bool c2;
 
 };

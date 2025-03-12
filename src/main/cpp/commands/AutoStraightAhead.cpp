@@ -4,16 +4,17 @@
 
 #include "commands/AutoStraightAhead.h"
 
+#include <frc2/command/WaitCommand.h>
 #include "commands/CmdPrintText.h"
 #include "commands/CmdDriveClearAll.h"
 #include "commands/CmdDriveStop.h"
 #include "commands/CmdDriveToRelativePoint.h"
 #include "commands/CmdDriveToAbsolutePoint.h"
-#include <frc2/command/WaitCommand.h>
-
+#include "commands/CmdDriveToAprilTag.h"
 #include "commands/CmdElevatorSetLevel.h"
 #include "commands/CmdChuteOpen.h"
 #include "commands/CmdChuteClose.h"
+#include "commands/CmdLimelightSetPipeline.h"
 
 
 
@@ -26,24 +27,32 @@ AutoStraightAhead::AutoStraightAhead()
     CmdPrintText("****** AutoStraightAhead ******"),
     CmdDriveClearAll(),
 
+    CmdLimelightSetPipeline(0), //pipeline 0 is Right
 
-    //Drive backwards 88 inches, in 2 steps to allow for elevator to come up
-    frc2::WaitCommand(2_s),
-    CmdDriveToRelativePoint( -44.0, 0, 0, 0.3, false, 0),
-    CmdElevatorSetLevel( ELEVATOR_L3 ),
-    CmdDriveToAbsolutePoint( -88.0, 0, 0, 0.3, true, 3.0),
+    frc2::WaitCommand(0.25_s),
+
+    //Drive to AprilTag
+    CmdDriveToAprilTag(0),
+
+    //Elevator UP
+    frc2::WaitCommand(0.25_s),
+    CmdElevatorSetLevel(ELEVATOR_L2),
+
+    //Wait for Elevator
+    frc2::WaitCommand(1.5_s),
 
 
     //Score!
     CmdChuteOpen(),
-    frc2::WaitCommand(2_s),
+    frc2::WaitCommand(2.0_s),
     CmdChuteClose(),
+
 
     //Back off reef, bring elevator back down
     CmdDriveToRelativePoint( 20.0, 0, 0, 0.2, true, 0),
-    frc2::WaitCommand(0.5_s),
     CmdElevatorSetLevel( ELEVATOR_HOME ),
 
+    //Done!
     CmdDriveStop(),  
     CmdPrintText("AutoStraightAhead Complete")
   );

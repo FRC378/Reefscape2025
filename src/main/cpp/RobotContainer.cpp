@@ -36,6 +36,7 @@
 #include "commands/AutoDoNothing.h"
 #include "commands/AutoCrossLine.h"
 #include "commands/AutoStraightAhead.h"
+#include "commands/AutoRightSide.h"
 
 RobotContainer::RobotContainer() 
 {
@@ -55,12 +56,18 @@ RobotContainer::RobotContainer()
   frc::SmartDashboard::PutData( "DriveWithPower", new CmdDriveWithPower( .5, 150, 0) );
   frc::SmartDashboard::PutData( "GprTest1",       new GrpTest1() );
 
+  frc::SmartDashboard::PutData( "Close Chute",    new CmdChuteClose() );
+  frc::SmartDashboard::PutData( "Open Chute",     new CmdChuteOpen() );
+
+
 
   //**********************  AUTOs ****************************************
-  m_chooser.SetDefaultOption("Auto Do Nothing",    new AutoDoNothing() );
-  m_chooser.SetDefaultOption("Auto CrossLine",     new AutoCrossLine() );
-  m_chooser.SetDefaultOption("Auto StraightAhead", new AutoStraightAhead() );
+  m_chooser.AddOption("Auto Do Nothing",         new AutoDoNothing() );
+  m_chooser.AddOption("Auto CrossLine",          new AutoCrossLine() );
+  m_chooser.AddOption("Auto StraightAhead",      new AutoStraightAhead() );
+  m_chooser.AddOption("Auto RightSide",          new AutoRightSide() );
 
+  m_chooser.SetDefaultOption("Auto Do Nothing",  new AutoDoNothing() );
 
 
 
@@ -73,7 +80,7 @@ void RobotContainer::ConfigureBindings()
 {
   //Controller Buttons
   m_ctrl.RightTrigger().OnTrue(  new CmdChuteOpen()  ); //Open chute when pressed
-  m_ctrl.RightTrigger().OnFalse( new CmdChuteClose() ); //Close when released
+//m_ctrl.RightTrigger().OnFalse( new CmdChuteClose() ); //Close when released - Trigger doesn't close Chute anymore
 
 
 

@@ -6,6 +6,7 @@
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableInstance.h>
 #include "frc/smartdashboard/SmartDashboard.h"
+#include <iostream>
 
 #define PI 3.1415
 
@@ -68,6 +69,7 @@ double LimeLight::GetTargetDistance(void)
 void   LimeLight::SetPipeline(int value)
 {
     nt::NetworkTableInstance::GetDefault().GetTable(m_LLName)->PutNumber("pipeline", value);
+    std::cout <<"SetPipeline= " << value << std::endl;
 }
 int   LimeLight::GetPipeline(void)
 {

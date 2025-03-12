@@ -3,18 +3,18 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/AutoRightSide.h"
-
+#include <frc2/command/WaitCommand.h>
 #include "commands/CmdPrintText.h"
 #include "commands/CmdDriveClearAll.h"
 #include "commands/CmdDriveStop.h"
 #include "commands/CmdDriveToRelativePoint.h"
 #include "commands/CmdDriveToAbsolutePoint.h"
-#include <frc2/command/WaitCommand.h>
-
+#include "commands/CmdDriveToAprilTag.h"
 #include "commands/CmdElevatorSetLevel.h"
 #include "commands/CmdChuteOpen.h"
 #include "commands/CmdChuteClose.h"
 #include "commands/CmdDriveTurnToHeading.h"
+#include "commands/CmdLimelightSetPipeline.h"
 
 
 
@@ -28,35 +28,38 @@ AutoRightSide::AutoRightSide()
     CmdDriveClearAll(),
 
 
+    CmdLimelightSetPipeline(1),   //Pipeline 0 is right, Pileline 1 is left
+
     //Drive backwards 86 inches
-    frc2::WaitCommand(2_s),
-    CmdDriveToAbsolutePoint( -86.0, 0, 0, 0.3, true, 3.0),
+    frc2::WaitCommand(.25_s),
+    CmdDriveToAbsolutePoint( -90.0, 0, 0, 0.3, true, 3.0),
 
 
     //Now turn -60 degrees to face reef
-    CmdDriveTurnToHeading( -60.0, -0.3 ),
+    CmdDriveTurnToHeading( 60.0, 0.3 ),
 
-    //straff to align to april tag
-    // A command to control swerve to straff to apriltag while maintaining angle
 
-    //Move offset to align to reef pipe
-    CmdDriveToRelativePoint( 0.0, 6.0, -60, 0.3, true, 3.0),
+    frc2::WaitCommand(0.25_s),
 
-    //Raise Elevator
-    CmdElevatorSetLevel( ELEVATOR_L2 ),
+    //Drive to AprilTag
+    CmdDriveToAprilTag(60.0),
 
-    //Move to reef 
-    //  How do we know where to drive?
-    CmdDriveToAbsolutePoint( -999, -999, -60.0, 0.3, true, 3.0),
+    //Elevator UP
+    frc2::WaitCommand(0.25_s),
+    CmdElevatorSetLevel(ELEVATOR_L2),
+
+    //Wait for Elevator
+    frc2::WaitCommand(1.5_s),
+
 
     //Score!
     CmdChuteOpen(),
-    frc2::WaitCommand(2_s),
-    CmdChuteClose(),
+    frc2::WaitCommand(2.0_s),
+    //CmdChuteClose(),
+
 
     //Back off reef, bring elevator back down
-    CmdDriveToRelativePoint( 20.0, 0, -60.0, 0.2, true, 0),
-    frc2::WaitCommand(0.5_s),
+    CmdDriveToRelativePoint( 20.0, 20.0, 60.0, 0.2, true, 0),
     CmdElevatorSetLevel( ELEVATOR_HOME ),
 
     CmdDriveStop(),  

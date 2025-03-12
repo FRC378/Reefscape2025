@@ -98,8 +98,8 @@ void CmdDriveToRelativePoint::Execute()
 
   //Min turn power is 0.0625.
   //  Set Kp to reach 0.05 turn power at 1 deg error 
-  const double TURN_MAX_VELOCITY = .75; 
-  const double TURN_Kp           = (0.05 / 1.0);
+  const double TURN_MAX_VELOCITY = .25; 
+  const double TURN_Kp           = (0.01 / 1.0);
 
   double delta_angle   = m_finalH - g_robotContainer.m_drivetrain.GetGyroYaw();  //GetGyroYaw returns [-inf to +inf ]
 

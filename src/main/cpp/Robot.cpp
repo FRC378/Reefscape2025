@@ -71,6 +71,10 @@ void Robot::TeleopInit()
   if (m_autonomousCommand) {
     m_autonomousCommand->Cancel();
   }
+
+
+  g_robotContainer.m_limelight3.SetPipeline(2);   //Pipeline 2 is Drive
+
 }
 
 void Robot::TeleopPeriodic() {}

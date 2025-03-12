@@ -16,12 +16,22 @@ CmdChuteClose::CmdChuteClose()
 void CmdChuteClose::Initialize()
 {
 
-  //Drive Away from LimitSwitch
-  g_robotContainer.m_chute.SetPinMotorPower( -0.3 );
+  std::cout<<"CmdChuteClose"<<std::endl;
 
   //Set timer 
   m_timer.Reset();
   m_timer.Start();
+
+
+  // if( g_robotContainer.m_chute.GetCoralOpen() )
+  // {
+    //Drive Away from LimitSwitch
+    g_robotContainer.m_chute.SetPinMotorPower( -0.3 );    
+  // }
+  // else
+  // {
+  //   std::cout<<"  ** ABORT:  Chute Not Open!"<<std::endl;
+  // }
 
 }
 
@@ -32,6 +42,7 @@ void CmdChuteClose::Execute() {}
 void CmdChuteClose::End(bool interrupted)
 {
   g_robotContainer.m_chute.SetPinMotorPower( 0.0 );
+  g_robotContainer.m_chute.SetCoralOpen(false);
   m_timer.Stop();
 }
 

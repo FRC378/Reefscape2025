@@ -41,7 +41,9 @@ void CmdDriveToAprilTag::Execute()
   double vy = 0;
   double yAngle;
   double currX;
-  //double currY;
+  double currY;
+
+  double deltaX,deltaY;
 
 
 
@@ -73,10 +75,10 @@ void CmdDriveToAprilTag::Execute()
 
 
 
-    //Drive towards apriltag, maintain zero delyaY, until we lose AprilTag 
+    //Drive towards apriltag, maintain zero deltaY, until we lose AprilTag 
     case 1:
 
-      vx = -0.4;      
+      vx = -0.3;      
       vy = 0;
 
       //Keep moveing forward until we lose Apriltag
@@ -114,18 +116,23 @@ void CmdDriveToAprilTag::Execute()
 
 
       currX = g_robotContainer.m_drivetrain.GetOdometryX();
-      //currY = g_robotContainer.m_drivetrain.GetOdometryY();
+      currY = g_robotContainer.m_drivetrain.GetOdometryY();
 
-      if(  abs( m_prevXValue - currX) < 0.25 )
+      deltaX = m_prevXValue - currX;
+      deltaY = m_prevyValue - currY;
+
+      //if(  ( abs( deltaX) + abs(deltaY) )  < 0.25 )
+      if(  deltaX*deltaX + deltaY*deltaY   < 0.1 ) 
       {
         m_currState++; //DONE!
         std::cout<< "S2 Done!" << std::endl;
       }
 
 
-      std::cout<< "S2: " << m_prevXValue <<"  "<<currX<<"  "<< abs( m_prevXValue - currX)  << std::endl;
+      std::cout<< "S2: " <<  deltaX*deltaX + deltaY*deltaY   << std::endl;
 
       m_prevXValue = currX;
+      m_prevyValue = currY;
 
       break;
 
@@ -155,7 +162,7 @@ void CmdDriveToAprilTag::Execute()
   //Min turn power is 0.0625.
   //  Set Kp to reach 0.05 turn power at 1 deg error 
   const double TURN_MAX_VELOCITY = .25; 
-  const double TURN_Kp           = (0.05 / 1.0);
+  const double TURN_Kp           = (0.01 / 1.0);
 
   double delta_angle   = m_inputH - g_robotContainer.m_drivetrain.GetGyroYaw();  //GetGyroYaw returns [-inf to +inf ]
 

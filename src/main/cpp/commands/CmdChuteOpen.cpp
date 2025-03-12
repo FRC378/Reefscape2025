@@ -15,6 +15,9 @@ CmdChuteOpen::CmdChuteOpen()
 
 void CmdChuteOpen::Initialize() 
 {
+
+  std::cout<<"CmdChuteOpen"<<std::endl;
+
   //Drive toward LimitSwitch
   g_robotContainer.m_chute.SetPinMotorPower( 0.75 );
 
