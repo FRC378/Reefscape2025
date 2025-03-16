@@ -29,8 +29,8 @@ void CmdChuteClose::Initialize()
 
   // if( g_robotContainer.m_chute.GetCoralOpen() )
   // {
-    // //Drive Away from LimitSwitch
-    // g_robotContainer.m_chute.SetPinMotorPower( -0.3 );    
+    //Drive Away from LimitSwitch
+    g_robotContainer.m_chute.SetPinMotorPower( -0.3 );    
   // }
   // else
   // {
@@ -43,14 +43,14 @@ void CmdChuteClose::Initialize()
 void CmdChuteClose::Execute() 
 {
 
-  //Delay closing Chute 
-  double delayTime =     frc::SmartDashboard::GetNumber( "ChuteCloseDelay", 0.025);
+  // //Delay closing Chute 
+  // double delayTime =     frc::SmartDashboard::GetNumber( "ChuteCloseDelay", 0.025);
 
 
-  if( m_timer.HasElapsed(  (units::time::second_t)delayTime ))
-  {
-       g_robotContainer.m_chute.SetPinMotorPower( -0.3 );    
-  }
+  // if( m_timer.HasElapsed(  (units::time::second_t)delayTime ))
+  // {
+  //      g_robotContainer.m_chute.SetPinMotorPower( -0.3 );    
+  // }
  
 
 
